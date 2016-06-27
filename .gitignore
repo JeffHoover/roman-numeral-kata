@@ -1,0 +1,6 @@
+src/*.swp
+src/*.o
+src/roman
+src/test
+src/obj/*.o
+tests/obj/*.o
