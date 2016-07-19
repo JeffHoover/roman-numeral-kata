@@ -15,6 +15,13 @@ START_TEST (to_arabic)
      ck_assert_msg(actual == expected,
                  "convert_roman_to_arabic(%s) expected %d but was %d", test_value, expected, actual);
      printf("convert_roman_to_arabic(%s) = %d\n", test_value, actual); 
+
+     expected = 2;
+     test_value = "II";
+     actual = roman_to_arabic(test_value);
+     ck_assert_msg(actual == expected,
+                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value, expected, actual);
+     printf("convert_roman_to_arabic(%s) = %d\n", test_value, actual); 
 }
 END_TEST
 

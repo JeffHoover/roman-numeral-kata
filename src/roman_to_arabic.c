@@ -4,6 +4,9 @@
 
 int roman_to_arabic(char * value)
 {
-  return 1;
+  if (strcmp(value, "I") == 0) {
+     return 1;
+  }
+  return 2;
 }
 
