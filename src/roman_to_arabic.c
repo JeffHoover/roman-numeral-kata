@@ -4,6 +4,6 @@
 
 int roman_to_arabic(char * value)
 {
-  return 0;
+  return 1;
 }
 
