@@ -6,20 +6,18 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
+#define NUM_POINTS 2
 
 START_TEST (to_arabic)
 {
-     int expected [] = {1, 2};
-     char * test_value [] = {"I", "II"};
-     int actual = roman_to_arabic(test_value[0]);
-     ck_assert_msg(actual == expected[0],
-                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value[0], expected[0], actual);
-     printf("convert_roman_to_arabic(%s) = %d\n", test_value[0], actual); 
-
-     actual = roman_to_arabic(test_value[1]);
-     ck_assert_msg(actual == expected[1],
-                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value[1], expected[1], actual);
-     printf("convert_roman_to_arabic(%s) = %d\n", test_value[1], actual); 
+     int expected [NUM_POINTS] = {1, 2};
+     char * test_value [NUM_POINTS] = {"I", "II"};
+     for (int ii=0; ii < NUM_POINTS; ii++) {
+         int actual = roman_to_arabic(test_value[ii]);
+         ck_assert_msg(actual == expected[ii],
+                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value[ii], expected[ii], actual);
+         printf("convert_roman_to_arabic(%s) = %d\n", test_value[ii], actual); 
+     }
 }
 END_TEST
 
