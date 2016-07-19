@@ -9,19 +9,17 @@
 
 START_TEST (to_arabic)
 {
-     int expected = 1;
-     char * test_value = "I";
-     int actual = roman_to_arabic(test_value);
-     ck_assert_msg(actual == expected,
-                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value, expected, actual);
-     printf("convert_roman_to_arabic(%s) = %d\n", test_value, actual); 
+     int expected [] = {1, 2};
+     char * test_value [] = {"I", "II"};
+     int actual = roman_to_arabic(test_value[0]);
+     ck_assert_msg(actual == expected[0],
+                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value[0], expected[0], actual);
+     printf("convert_roman_to_arabic(%s) = %d\n", test_value[0], actual); 
 
-     expected = 2;
-     test_value = "II";
-     actual = roman_to_arabic(test_value);
-     ck_assert_msg(actual == expected,
-                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value, expected, actual);
-     printf("convert_roman_to_arabic(%s) = %d\n", test_value, actual); 
+     actual = roman_to_arabic(test_value[1]);
+     ck_assert_msg(actual == expected[1],
+                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value[1], expected[1], actual);
+     printf("convert_roman_to_arabic(%s) = %d\n", test_value[1], actual); 
 }
 END_TEST
 
