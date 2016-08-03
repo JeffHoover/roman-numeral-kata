@@ -1,6 +1,20 @@
 #Roman Numeral Calculator Kata  
 https://drive.google.com/a/pillartechnology.com/file/d/0Bz26C0WuteyRSG1yY1g2ZTNKVmM/view?usp=sharing  
 
+
+- Ubuntu Linux 14.04
+
+- The C programming language
+
+- GNU GCC compiler tool chain
+
+- GNU Make
+
+- Check unit testing framework ( https://libcheck.github.io/check/ )
+
+- git
+
+
 To build and run tests, including valgrind:
 
   cd src  
