@@ -8,6 +8,10 @@ To build and run tests, including valgrind:
 
 
 https://www.engadget.com/2009/09/07/how-to-set-up-ubuntu-linux-on-a-mac-its-easy-and-free/
-  http://www.virtualbox.org/wiki/Downloads
-  http://www.ubuntu.com/download/alternative-downloads
-    http://cdimage.ubuntu.com/netboot/14.04/?_ga=1.186104489.1073039968.1466107096 
+
+http://www.virtualbox.org/wiki/Downloads
+  
+http://www.ubuntu.com/download/alternative-downloads
+  
+http://cdimage.ubuntu.com/netboot/14.04/?_ga=1.186104489.1073039968.1466107096 
+
