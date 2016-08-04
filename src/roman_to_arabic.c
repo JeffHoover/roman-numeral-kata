@@ -1,22 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <roman_to_arabic.h>
 
-int roman_to_arabic(char * value)
+void *malloc(size_t size);
+
+int roman_to_arabic(char * roman)
 {
   int arabic = 0;
-  for (int ii=0; ii< strlen(value); ii++)
+  int romanLen = strlen(roman);
+  int * values = (int *) malloc(romanLen * sizeof(int));
+  for (int ii=0; ii< romanLen; ii++)
   {
-    char current = *(value + ii);
+    char current = *(roman + ii);
     if (current == 'I')
       {
-        arabic++;
+        values[ii]= 1;
       }
     if (current == 'V')
       {
-        arabic+=5;
+        values[ii]= 5;
       }
   }
+  for (int ii=0; ii< romanLen; ii++)
+  {
+     arabic += values[ii];
+  }
+  free (values);
   return arabic;
 }
 
