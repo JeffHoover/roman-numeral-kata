@@ -23,6 +23,10 @@ int get_value_for(char roman)
     {
       return 100;
     }
+  else if (roman == 'D')
+    {
+      return 500;
+    }
   return 0;
 }
 
