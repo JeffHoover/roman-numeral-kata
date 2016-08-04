@@ -7,9 +7,14 @@ int roman_to_arabic(char * value)
   int arabic = 0;
   for (int ii=0; ii< strlen(value); ii++)
   {
-    if (*(value + ii) == 'I')
+    char current = *(value + ii);
+    if (current == 'I')
       {
         arabic++;
+      }
+    if (current == 'V')
+      {
+        arabic+=5;
       }
   }
   return arabic;
