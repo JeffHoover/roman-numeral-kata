@@ -11,10 +11,10 @@
 
 START_TEST (to_arabic)
 {
-     int expected [] = {1, 2, 3, 5, 4, 6, 7, 8, 10, 50, 100, 500};
+     int expected [] = {1, 2, 3, 5, 4, 6, 7, 8, 10, 50, 100, 500, 1000};
      char * test_value [] = {"I", "II", "III", "V", "IV",
                              "VI", "VII", "VIII", "X",
-                             "L", "C", "D"};
+                             "L", "C", "D", "M"};
      printf("\n");
      for (int ii=0; ii < sizeof(expected)/sizeof(int); ii++) {
          int actual = roman_to_arabic(test_value[ii]);

@@ -27,6 +27,10 @@ int get_value_for(char roman)
     {
       return 500;
     }
+  else if (roman == 'M')
+    {
+      return 1000;
+    }
   return 0;
 }
 
