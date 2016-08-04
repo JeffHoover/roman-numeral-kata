@@ -6,14 +6,12 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
-#define NUM_POINTS 3
-
 START_TEST (to_arabic)
 {
-     int expected [NUM_POINTS] = {1, 2, 3};
-     char * test_value [NUM_POINTS] = {"I", "II", "III"};
+     int expected [] = {1, 2, 3};
+     char * test_value [] = {"I", "II", "III"};
      printf("\n");
-     for (int ii=0; ii < NUM_POINTS; ii++) {
+     for (int ii=0; ii < sizeof(expected)/sizeof(int); ii++) {
          int actual = roman_to_arabic(test_value[ii]);
          ck_assert_msg(actual == expected[ii],
                  "convert_roman_to_arabic(%s) expected %d but was %d", test_value[ii], expected[ii], actual);
