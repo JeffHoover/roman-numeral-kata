@@ -3,27 +3,6 @@
 #include <string.h>
 #include <roman_to_arabic.h>
 
-int compute_arabic_from_values(int * values, int romanLen);
-int compute_arabic_from_values(int * values, int romanLen)
-{
-  if (romanLen < 1)
-     return 0;
-
-  int arabic = values[romanLen-1];
-  for (int ii=0; ii< romanLen-1; ii++)
-  {
-     if (values[ii] < values[ii+1])
-     {
-         arabic -= values[ii];
-     }
-     else
-     {
-         arabic += values[ii];
-     }
-  }
-  return arabic;
-}
-
 void load_values(int * values, char *roman);
 void load_values(int * values, char *roman)
 {
@@ -43,8 +22,35 @@ void load_values(int * values, char *roman)
       {
         currentVal = 10;
       }
+    else if (current == 'L')
+      {
+        currentVal = 50;
+      }
+
+
     values[ii] = currentVal;
   }
+}
+
+int compute_arabic_from_values(int * values, int romanLen);
+int compute_arabic_from_values(int * values, int romanLen)
+{
+  if (romanLen < 1)
+     return 0;
+
+  int arabic = values[romanLen-1];
+  for (int ii=0; ii< romanLen-1; ii++)
+  {
+     if (values[ii] < values[ii+1])
+     {
+         arabic -= values[ii];
+     }
+     else
+     {
+         arabic += values[ii];
+     }
+  }
+  return arabic;
 }
 
 int roman_to_arabic(char * roman)
