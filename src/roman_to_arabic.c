@@ -5,6 +5,17 @@
 
 void *malloc(size_t size);
 
+int compute_arabic_from_values(int * values, int romanLen);
+int compute_arabic_from_values(int * values, int romanLen)
+{
+  int arabic = 0;
+  for (int ii=0; ii< romanLen; ii++)
+  {
+     arabic += values[ii];
+  }
+  return arabic;
+}
+
 int roman_to_arabic(char * roman)
 {
   int arabic = 0;
@@ -22,10 +33,7 @@ int roman_to_arabic(char * roman)
         values[ii]= 5;
       }
   }
-  for (int ii=0; ii< romanLen; ii++)
-  {
-     arabic += values[ii];
-  }
+  arabic = compute_arabic_from_values(values, romanLen);
   free (values);
   return arabic;
 }
