@@ -11,14 +11,14 @@
 
 START_TEST (to_arabic)
 {
-     int expected [] = {1, 2, 3, 5};
-     char * test_value [] = {"I", "II", "III", "V"};
+     int expected [] = {1, 2, 3, 5, 4};
+     char * test_value [] = {"I", "II", "III", "V", "IV"};
      printf("\n");
      for (int ii=0; ii < sizeof(expected)/sizeof(int); ii++) {
          int actual = roman_to_arabic(test_value[ii]);
          ck_assert_msg(actual == expected[ii],
                  ANSI_COLOR_RED
-                 "convert_roman_to_arabic(%s) expected %d but was %d\n"
+                 "\nconvert_roman_to_arabic(%s) expected %d but was %d\n"
                  ANSI_COLOR_RESET,
                  test_value[ii], expected[ii], actual);
          printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET , test_value[ii], actual); 

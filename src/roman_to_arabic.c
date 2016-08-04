@@ -3,15 +3,23 @@
 #include <string.h>
 #include <roman_to_arabic.h>
 
-void *malloc(size_t size);
-
 int compute_arabic_from_values(int * values, int romanLen);
 int compute_arabic_from_values(int * values, int romanLen)
 {
-  int arabic = 0;
-  for (int ii=0; ii< romanLen; ii++)
+  if (romanLen < 1)
+     return 0;
+
+  int arabic = values[romanLen-1];
+  for (int ii=0; ii< romanLen-1; ii++)
   {
-     arabic += values[ii];
+     if (values[ii] < values[ii+1])
+     {
+         arabic -= values[ii];
+     }
+     else
+     {
+         arabic += values[ii];
+     }
   }
   return arabic;
 }
