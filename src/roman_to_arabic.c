@@ -21,15 +21,17 @@ void load_values(int * values, char *roman)
 {
   for (int ii=0; ii< strlen(roman); ii++)
   {
+    int currentVal = 0;
     char current = *(roman + ii);
     if (current == 'I')
       {
-        values[ii]= 1;
+        currentVal = 1;
       }
     if (current == 'V')
       {
-        values[ii]= 5;
+        currentVal = 5;
       }
+    values[ii] = currentVal;
   }
 }
 
