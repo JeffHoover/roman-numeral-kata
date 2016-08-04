@@ -26,6 +26,10 @@ void load_values(int * values, char *roman)
       {
         currentVal = 50;
       }
+    else if (current == 'C')
+      {
+        currentVal = 100;
+      }
 
 
     values[ii] = currentVal;
