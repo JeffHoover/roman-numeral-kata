@@ -16,12 +16,10 @@ int compute_arabic_from_values(int * values, int romanLen)
   return arabic;
 }
 
-int roman_to_arabic(char * roman)
+void load_values(int * values, char *roman);
+void load_values(int * values, char *roman)
 {
-  int arabic = 0;
-  int romanLen = strlen(roman);
-  int * values = (int *) malloc(romanLen * sizeof(int));
-  for (int ii=0; ii< romanLen; ii++)
+  for (int ii=0; ii< strlen(roman); ii++)
   {
     char current = *(roman + ii);
     if (current == 'I')
@@ -33,7 +31,14 @@ int roman_to_arabic(char * roman)
         values[ii]= 5;
       }
   }
-  arabic = compute_arabic_from_values(values, romanLen);
+}
+
+int roman_to_arabic(char * roman)
+{
+  int romanLen = strlen(roman);
+  int * values = (int *) malloc(romanLen * sizeof(int));
+  load_values(values, roman);
+  int arabic = compute_arabic_from_values(values, romanLen);
   free (values);
   return arabic;
 }
