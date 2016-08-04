@@ -5,6 +5,9 @@
 #include <roman_to_arabic.h>
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
 
 START_TEST (to_arabic)
 {
@@ -14,8 +17,11 @@ START_TEST (to_arabic)
      for (int ii=0; ii < sizeof(expected)/sizeof(int); ii++) {
          int actual = roman_to_arabic(test_value[ii]);
          ck_assert_msg(actual == expected[ii],
-                 "convert_roman_to_arabic(%s) expected %d but was %d", test_value[ii], expected[ii], actual);
-         printf("convert_roman_to_arabic(%s) = %d\n", test_value[ii], actual); 
+                 ANSI_COLOR_RED
+                 "convert_roman_to_arabic(%s) expected %d but was %d\n"
+                 ANSI_COLOR_RESET,
+                 test_value[ii], expected[ii], actual);
+         printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET , test_value[ii], actual); 
      }
      printf("\n");
 }
