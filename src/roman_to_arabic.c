@@ -3,36 +3,39 @@
 #include <string.h>
 #include <roman_to_arabic.h>
 
+int get_value_for(char roman);
+int get_value_for(char roman)
+{
+  if (roman == 'I')
+    {
+      return 1;
+    }
+  else if (roman == 'V')
+    {
+      return 5;
+    }
+  else if (roman == 'X')
+    {
+      return 10;
+    }
+  else if (roman == 'L')
+    {
+      return 50;
+    }
+  else if (roman == 'C')
+    {
+      return 100;
+    }
+  return 0;
+}
+
 void load_values(int * values, char *roman);
 void load_values(int * values, char *roman)
 {
   for (int ii=0; ii< strlen(roman); ii++)
   {
     int currentVal = 0;
-    char current = *(roman + ii);
-    if (current == 'I')
-      {
-        currentVal = 1;
-      }
-    else if (current == 'V')
-      {
-        currentVal = 5;
-      }
-    else if (current == 'X')
-      {
-        currentVal = 10;
-      }
-    else if (current == 'L')
-      {
-        currentVal = 50;
-      }
-    else if (current == 'C')
-      {
-        currentVal = 100;
-      }
-
-
-    values[ii] = currentVal;
+    values[ii] = get_value_for(*(roman + ii));
   }
 }
 
