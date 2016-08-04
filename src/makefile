@@ -5,10 +5,10 @@ CFLAGS=-I$(IDIR) -std=c99 -O0 -g
 ODIR=obj
 LDIR =../lib
 
-_DEPS = arabic_to_roman.h roman_to_arabic.h
+_DEPS = arabic_to_roman.h roman_to_arabic.h roman_utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = arabic_to_roman.o roman.o roman_to_arabic.o
+_OBJ = arabic_to_roman.o roman.o roman_to_arabic.o roman_utils.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _$(ODIR)/%.o: %.c $(DEPS)
@@ -29,7 +29,7 @@ roman: $(OBJ)
 ../tests/obj/test_roman_numbers.o: ../tests/test_roman_numbers.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o
+test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o roman_utils.o
 	$(CC) -pthread -o $@ -o $@ $^ $(CFLAGS) -l check -lm -lrt 
 
 run-test: clean test roman valgrind_test valgrind_roman
