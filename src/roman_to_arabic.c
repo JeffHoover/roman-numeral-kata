@@ -4,9 +4,14 @@
 
 int roman_to_arabic(char * value)
 {
-  if (strcmp(value, "I") == 0) {
-     return 1;
+  int arabic = 0;
+  for (int ii=0; ii< strlen(value); ii++)
+  {
+    if (*(value + ii) == 'I')
+      {
+        arabic++;
+      }
   }
-  return 2;
+  return arabic;
 }
 
