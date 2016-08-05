@@ -2,6 +2,7 @@
 #define ROMAN_UTILS_H
 
 int get_value_for(char roman);
-void load_values(int * values, char *roman);
-int compute_arabic_from_values(int * values, int romanLen);
+void find_arabic_addends(int * arabicAddends, char *romanNumeral);
+int compute_arabic_from_addends(int * arabicAddends, int numberOfRomanDigits);
+
 #endif /* ROMAN_UTILS_H */
