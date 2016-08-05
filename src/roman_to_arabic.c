@@ -11,7 +11,9 @@ int roman_to_arabic(char * romanNumeral)
 	find_arabic_addends(arabicAddends, romanNumeral);
 
 	int arabicValue = compute_arabic_from_addends(arabicAddends, numberOfRomanDigits);
+
 	free (arabicAddends);
+
 	return arabicValue;
 }
 
