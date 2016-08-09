@@ -4,6 +4,6 @@
 
 char * arabic_to_roman(unsigned int value)
 {
-  return "0";
+  return "I";
 }
 

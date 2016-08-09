@@ -33,6 +33,21 @@ END_TEST
 
 START_TEST (to_roman)
 {
+    int arabic_values [] = {1};
+    char * roman_values [] = {"I"};
+    for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
+    {
+        char * romanResult = arabic_to_roman(arabic_values[ii]);
+
+        ck_assert_msg(strcmp(romanResult, roman_values[ii])==0,
+            ANSI_COLOR_RED
+            "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
+                 ANSI_COLOR_RESET,
+                 arabic_values[ii], roman_values[ii], romanResult);
+         printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET ,
+                arabic_values[ii], romanResult);
+     }
+     printf("\n");
 }
 END_TEST
 
@@ -40,13 +55,13 @@ Suite * roman_suite (void)
 {
   Suite *s = suite_create ("Roman Numeral Unit Tests");
 
-  TCase *tc_to_roman = tcase_create ("ArabicToRoman");
-  tcase_add_test (tc_to_roman, to_roman);
-  suite_add_tcase (s, tc_to_roman);
-
   TCase *tc_to_arabic = tcase_create ("RomanToArabic");
   tcase_add_test (tc_to_arabic, to_arabic);
   suite_add_tcase (s, tc_to_arabic);
+
+  TCase *tc_to_roman = tcase_create ("ArabicToRoman");
+  tcase_add_test (tc_to_roman, to_roman);
+  suite_add_tcase (s, tc_to_roman);
 
   return s;
 }
