@@ -11,12 +11,14 @@
 
 START_TEST (to_roman)
 {
-    int arabic_values [] = {1};
-    char * roman_values [] = {"I"};
+    int arabic_values [] = {1, 3};
+    char * roman_values [] = {"I", "III"};
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
-        char * romanResult = arabic_to_roman(arabic_values[ii]);
-
+        char romanResult[20];
+        char * romanBuffer = arabic_to_roman(arabic_values[ii]);
+        strcpy(romanResult, romanBuffer);
+        free(romanBuffer);
         ck_assert_msg(strcmp(romanResult, roman_values[ii])==0,
             ANSI_COLOR_RED
             "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
