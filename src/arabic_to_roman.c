@@ -5,6 +5,13 @@
 void arabic_to_roman (unsigned int arabicValue, char * romanValue)
 {
     romanValue[0] = 0;
+
+    if (arabicValue >= 5)
+    {
+        strcat(romanValue, "V");
+        arabicValue -= 5;
+    }
+
     if (arabicValue >= 4)
     {
         strcat(romanValue, "IV");

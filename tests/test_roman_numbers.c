@@ -11,8 +11,8 @@
 
 START_TEST (to_roman)
 {
-    int arabic_values [] = {1, 3, 4};
-    char * expected_roman_values [] = {"I", "III", "IV"};
+    int arabic_values [] = {1, 3, 4, 5};
+    char * expected_roman_values [] = {"I", "III", "IV", "V"};
     char romanResult[20]; // TODO - 20 is probably a little big. Longest roman numeral in test is "MMMMDCCXCIV"
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
@@ -32,6 +32,9 @@ END_TEST
 
 START_TEST (to_arabic)
 {
+// TODO: Can I have one set of roman and arabic values and have locals
+// like "expected_roman_values" point to the one copy?
+// Not until at least both algorithms are finished.
      char * roman_values [] = {"I", "II", "III", "V", "IV",
                              "VI", "VII", "VIII", "IX", "X", "XXIV",
                              "L", "LXVII", "XCIX", "C", "D", "M", "MMMM", 
@@ -41,6 +44,7 @@ START_TEST (to_arabic)
      printf("\n");
      for (int ii=0; ii < sizeof(expected_arabic_values)/sizeof(int); ii++) {
          int arabicValue = roman_to_arabic(roman_values[ii]);
+// TODO: Can I make extract any here, as above?
          ck_assert_msg(arabicValue == expected_arabic_values[ii],
                  ANSI_COLOR_RED
                  "\nconvert_roman_to_arabic(%s) expected %d but was %d\n"
