@@ -13,11 +13,12 @@ START_TEST (to_roman)
 {
     int arabic_values [] = {1, 3, 4};
     char * expected_roman_values [] = {"I", "III", "IV"};
-    char romanResult[20]; // TODO - 20 is probably a little big. Look at final data set.
+    char romanResult[20]; // TODO - 20 is probably a little big. Longest roman numeral in test is "MMMMDCCXCIV"
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
         arabic_to_roman(arabic_values[ii], romanResult);
         ck_assert_msg(strcmp(romanResult, expected_roman_values[ii])==0,
+// TODO: can I extract any of the stuff below into a function that reads better?
             ANSI_COLOR_RED
             "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
                  ANSI_COLOR_RESET,
