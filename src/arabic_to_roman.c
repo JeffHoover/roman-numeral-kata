@@ -6,32 +6,18 @@ void arabic_to_roman (unsigned int arabicValue, char * romanValue)
 {
     romanValue[0] = 0;
 
-    int incrementalValue[] = {10};
-    char * romanDigit[] = {"X"};
+    int incrementalValue[] = {10, 9, 5, 4 };
+    char * romanDigit[] = {"X", "IX", "V", "IV"};
 
-    if (arabicValue >= incrementalValue[0])
+    for (int ii=0; ii< sizeof(incrementalValue)/sizeof(int); ii++)
     {
-        strcat(romanValue, romanDigit[0]);
-        arabicValue -= incrementalValue[0];
+      if (arabicValue >= incrementalValue[ii])
+      {
+          strcat(romanValue, romanDigit[ii]);
+          arabicValue -= incrementalValue[ii];
+      }
     }
 
-    if (arabicValue >= 9)
-    {
-        strcat(romanValue, "IX");
-        arabicValue -= 9;
-    }
-
-    if (arabicValue >= 5)
-    {
-        strcat(romanValue, "V");
-        arabicValue -= 5;
-    }
-
-    if (arabicValue >= 4)
-    {
-        strcat(romanValue, "IV");
-        arabicValue -= 4;
-    }
     for (int ii=0; ii< arabicValue; ii++)
     {
         strcat(romanValue, "I");
