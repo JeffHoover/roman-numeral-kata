@@ -6,6 +6,12 @@ void arabic_to_roman (unsigned int arabicValue, char * romanValue)
 {
     romanValue[0] = 0;
 
+    if (arabicValue >= 10)
+    {
+        strcat(romanValue, "X");
+        arabicValue -= 10;
+    }
+
     if (arabicValue >= 9)
     {
         strcat(romanValue, "IX");
