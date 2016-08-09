@@ -6,10 +6,13 @@ void arabic_to_roman (unsigned int arabicValue, char * romanValue)
 {
     romanValue[0] = 0;
 
-    if (arabicValue >= 10)
+    int incrementalValue[] = {10};
+    char * romanDigit[] = {"X"};
+
+    if (arabicValue >= incrementalValue[0])
     {
-        strcat(romanValue, "X");
-        arabicValue -= 10;
+        strcat(romanValue, romanDigit[0]);
+        arabicValue -= incrementalValue[0];
     }
 
     if (arabicValue >= 9)
