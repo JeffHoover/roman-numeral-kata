@@ -11,8 +11,8 @@
 
 START_TEST (to_roman)
 {
-    int arabic_values [] = {1, 3};
-    char * roman_values [] = {"I", "III"};
+    int arabic_values [] = {1, 3, 4};
+    char * roman_values [] = {"I", "III", "IV"};
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
         char romanResult[20];
