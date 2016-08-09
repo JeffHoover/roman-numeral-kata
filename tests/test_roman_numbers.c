@@ -9,6 +9,26 @@
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+START_TEST (to_roman)
+{
+    int arabic_values [] = {1};
+    char * roman_values [] = {"I"};
+    for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
+    {
+        char * romanResult = arabic_to_roman(arabic_values[ii]);
+
+        ck_assert_msg(strcmp(romanResult, roman_values[ii])==0,
+            ANSI_COLOR_RED
+            "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
+                 ANSI_COLOR_RESET,
+                 arabic_values[ii], roman_values[ii], romanResult);
+         printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET ,
+                arabic_values[ii], romanResult);
+     }
+     printf("\n");
+}
+END_TEST
+
 START_TEST (to_arabic)
 {
      char * roman_values [] = {"I", "II", "III", "V", "IV",
@@ -26,26 +46,6 @@ START_TEST (to_arabic)
                  ANSI_COLOR_RESET,
                  roman_values[ii], arabic_values[ii], arabicValue);
          printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, roman_values[ii], arabicValue); 
-     }
-     printf("\n");
-}
-END_TEST
-
-START_TEST (to_roman)
-{
-    int arabic_values [] = {1};
-    char * roman_values [] = {"I"};
-    for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
-    {
-        char * romanResult = arabic_to_roman(arabic_values[ii]);
-
-        ck_assert_msg(strcmp(romanResult, roman_values[ii])==0,
-            ANSI_COLOR_RED
-            "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
-                 ANSI_COLOR_RESET,
-                 arabic_values[ii], roman_values[ii], romanResult);
-         printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET ,
-                arabic_values[ii], romanResult);
      }
      printf("\n");
 }
