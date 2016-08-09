@@ -12,18 +12,16 @@
 START_TEST (to_roman)
 {
     int arabic_values [] = {1, 3, 4};
-    char * roman_values [] = {"I", "III", "IV"};
+    char * expected_roman_values [] = {"I", "III", "IV"};
+    char romanResult[20]; // TODO - 20 is probably a little big. Look at final data set.
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
-        char romanResult[20];
-        char * romanBuffer = arabic_to_roman(arabic_values[ii]);
-        strcpy(romanResult, romanBuffer);
-        free(romanBuffer);
-        ck_assert_msg(strcmp(romanResult, roman_values[ii])==0,
+        arabic_to_roman(arabic_values[ii], romanResult);
+        ck_assert_msg(strcmp(romanResult, expected_roman_values[ii])==0,
             ANSI_COLOR_RED
             "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
                  ANSI_COLOR_RESET,
-                 arabic_values[ii], roman_values[ii], romanResult);
+                 arabic_values[ii], expected_roman_values[ii], romanResult);
          printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET ,
                 arabic_values[ii], romanResult);
      }
@@ -33,7 +31,7 @@ END_TEST
 
 START_TEST (to_arabic)
 {
-     char * roman_values [] = {"I", "II", "III", "V", "IV",
+     char * expected_roman_values [] = {"I", "II", "III", "V", "IV",
                              "VI", "VII", "VIII", "IX", "X", "XXIV",
                              "L", "LXVII", "XCIX", "C", "D", "M", "MMMM", 
                               "MMMMDCCXCIV","MMMMCMXCIX"};
@@ -41,13 +39,13 @@ START_TEST (to_arabic)
                        1000, 4000, 4794, 4999};
      printf("\n");
      for (int ii=0; ii < sizeof(arabic_values)/sizeof(int); ii++) {
-         int arabicValue = roman_to_arabic(roman_values[ii]);
+         int arabicValue = roman_to_arabic(expected_roman_values[ii]);
          ck_assert_msg(arabicValue == arabic_values[ii],
                  ANSI_COLOR_RED
                  "\nconvert_roman_to_arabic(%s) expected %d but was %d\n"
                  ANSI_COLOR_RESET,
-                 roman_values[ii], arabic_values[ii], arabicValue);
-         printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, roman_values[ii], arabicValue); 
+                 expected_roman_values[ii], arabic_values[ii], arabicValue);
+         printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, expected_roman_values[ii], arabicValue); 
      }
      printf("\n");
 }

@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <arabic_to_roman.h>
-
-char * arabic_to_roman(unsigned int arabicValue)
+void arabic_to_roman (unsigned int arabicValue, char * romanValue)
 {
-    // TODO - Malloc size is going to end up way too large.
-    char * romanValue = (char *) malloc(arabicValue + 1);
     romanValue[0] = 0;
     if (arabicValue >= 4)
     {
@@ -17,6 +14,5 @@ char * arabic_to_roman(unsigned int arabicValue)
     {
         strcat(romanValue, "I");
     }
-    return romanValue;
 }
 
