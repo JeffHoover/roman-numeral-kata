@@ -3,6 +3,8 @@
 #include <string.h>
 #include <arabic_to_roman.h>
 
+unsigned int incrementalValue[] = {50, 40, 10, 9, 5, 4 };
+char * romanDigit[] = {"L", "XL", "X", "IX", "V", "IV"};
 
 // TODO - Could I pass arabicValue as an int and return it?
 void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue);
@@ -15,9 +17,6 @@ void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValu
         compute_roman_digit(arabicValue, incrementalValue, romanDigit, romanValue);
     }
 }
-
-unsigned int incrementalValue[] = {40, 10, 9, 5, 4 };
-char * romanDigit[] = {"XL", "X", "IX", "V", "IV"};
 
 void arabic_to_roman (unsigned int arabicValue, char * romanResult)
 {
