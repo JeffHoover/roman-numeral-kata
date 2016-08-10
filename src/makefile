@@ -15,7 +15,9 @@ _$(ODIR)/%.o: %.c $(DEPS)
 obj/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-all: roman test valgrind_roman valgrind_test
+all: clean roman test valgrind_roman valgrind_test
+
+check: test valgrind_test
 
 valgrind_roman:
 	valgrind ./roman 
