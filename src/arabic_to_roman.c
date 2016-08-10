@@ -5,33 +5,32 @@
 
 
 // TODO - Could I pass arabicValue as an int and return it?
-// TODO - What's a better name than 'process'
-void process(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue);
-void process(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue)
+void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue);
+void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue)
 {
     if (*arabicValue >= incrementalValue)
     {
         strcat(romanValue, romanDigit);
         *arabicValue -= incrementalValue;
-        process(arabicValue, incrementalValue, romanDigit, romanValue);
+        compute_roman_digit(arabicValue, incrementalValue, romanDigit, romanValue);
     }
 }
 
 unsigned int incrementalValue[] = {10, 9, 5, 4 };
 char * romanDigit[] = {"X", "IX", "V", "IV"};
 
-void arabic_to_roman (unsigned int arabicValue, char * romanValue)
+void arabic_to_roman (unsigned int arabicValue, char * romanResult)
 {
-    romanValue[0] = 0;
+    romanResult[0] = 0;
 
     for (int ii=0; ii< sizeof(incrementalValue)/sizeof(int); ii++)
     {
-      process (&arabicValue, incrementalValue[ii], romanDigit[ii], romanValue);
+      compute_roman_digit(&arabicValue, incrementalValue[ii], romanDigit[ii], romanResult);
     }
 
     for (unsigned int ii=0; ii< arabicValue; ii++)
     {
-        strcat(romanValue, "I");
+        strcat(romanResult, "I");
     }
 }
 
