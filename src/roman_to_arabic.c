@@ -5,6 +5,7 @@
 
 int roman_to_arabic(char * romanNumeral)
 {
+  // TODO - handle error case of null, 0, negative
   int numberOfRomanDigits = strlen(romanNumeral);
 
   int arabicAddends [20];

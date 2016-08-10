@@ -6,6 +6,7 @@
 unsigned int incrementalValue[] = {1000, 900, 400, 100, 90, 50, 40, 10, 9, 5, 4 };
 char * romanDigit[] = {"M","CM", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV"};
 
+// TODO - extract to roman_utils.c?
 void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue);
 void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue)
 {
@@ -19,6 +20,7 @@ void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValu
 
 void arabic_to_roman (unsigned int arabicValue, char * romanResult)
 {
+  // TODO - handle error case of null, 0, negative
     romanResult[0] = 0;
 
     for (int ii=0; ii< sizeof(incrementalValue)/sizeof(int); ii++)
@@ -26,6 +28,7 @@ void arabic_to_roman (unsigned int arabicValue, char * romanResult)
       compute_roman_digit(&arabicValue, incrementalValue[ii], romanDigit[ii], romanResult);
     }
 
+// TODO - extract out to appendZeroToThreeTrailingIs(...)?
     for (unsigned int ii=0; ii< arabicValue; ii++)
     {
         strcat(romanResult, "I");
