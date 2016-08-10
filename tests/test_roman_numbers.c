@@ -11,8 +11,8 @@
 
 START_TEST (to_roman)
 {
-    int arabic_values [] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 40, 47, 50, 74, 90, 100};
-    char * expected_roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XL", "XLVII", "L", "LXXIV", "XC", "C"};
+    int arabic_values [] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 40, 47, 50, 74, 90, 100, 400, 482};
+    char * expected_roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XL", "XLVII", "L", "LXXIV", "XC", "C","CD", "CDLXXXII"};
 
     char romanResult[20]; // TODO - 20 is probably a little big. Longest roman numeral in test is "MMMMDCCXCIV"
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
