@@ -9,21 +9,22 @@
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+// TODO: Make it easier to eyeball the A/R pairs. That might be a big-ish refactor.
+int arabic_values [] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 40, 47, 50, 67, 74, 90, 99, 100, 202, 330, 400, 482, 500, 900, 1000, 2001, 3030, 4400, 4894, 4999};
+char * roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXIV", "XL", "XLVII", "L", "LXVII", "LXXIV", "XC", "XCIX", "C","CCII", "CCCXXX", "CD", "CDLXXXII", "CDC", "CM", "M", "MMI", "MMMXXX", "MMMMCD", "MMMMCDCDXCIV", "MMMMCMXCIX"};
+
 START_TEST (to_roman)
 {
-    int arabic_values [] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 40, 47, 50, 74, 90, 100, 202, 330, 400, 482, 900, 1000, 2001, 3030, 4400, 4894, 4999};
-    char * expected_roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XL", "XLVII", "L", "LXXIV", "XC", "C","CCII", "CCCXXX", "CD", "CDLXXXII", "CM", "M", "MMI", "MMMXXX", "MMMMCD", "MMMMCDCDXCIV", "MMMMCMXCIX"};
-
     char romanResult[15]; // TODO - 15 is probably a little big. Longest roman numeral in test is "MMMMDCCCXCIV"
     for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
         arabic_to_roman(arabic_values[ii], romanResult);
-        ck_assert_msg(strcmp(romanResult, expected_roman_values[ii])==0,
+        ck_assert_msg(strcmp(romanResult, roman_values[ii])==0,
 // TODO: can I extract any of the stuff below into a function that reads better?
             ANSI_COLOR_RED
             "\nconvert_arabic_to_roman(%d) expected %s but was %s\n"
                  ANSI_COLOR_RESET,
-                 arabic_values[ii], expected_roman_values[ii], romanResult);
+                 arabic_values[ii], roman_values[ii], romanResult);
          printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET ,
                 arabic_values[ii], romanResult);
      }
@@ -33,24 +34,15 @@ END_TEST
 
 START_TEST (to_arabic)
 {
-// TODO: Can I have one set of roman and arabic values and have locals
-// like "expected_roman_values" point to the one copy?
-// Not until at least both algorithms are finished.
-     char * roman_values [] = {"I", "II", "III", "V", "IV",
-                             "VI", "VII", "VIII", "IX", "X", "XXIV",
-                             "L", "LXVII", "XCIX", "C", "D", "M", "MMMM", 
-                              "MMMMCDCDXCIV","MMMMCMXCIX"};
-     int expected_arabic_values [] = {1, 2, 3, 5, 4, 6, 7, 8, 9, 10, 24, 50, 67, 99, 100, 500,
-                       1000, 4000, 4894, 4999};
      printf("\n");
-     for (int ii=0; ii < sizeof(expected_arabic_values)/sizeof(int); ii++) {
+     for (int ii=0; ii < sizeof(arabic_values)/sizeof(int); ii++) {
          int arabicValue = roman_to_arabic(roman_values[ii]);
 // TODO: Can I make extract any here, as above?
-         ck_assert_msg(arabicValue == expected_arabic_values[ii],
+         ck_assert_msg(arabicValue == arabic_values[ii],
                  ANSI_COLOR_RED
                  "\nconvert_roman_to_arabic(%s) expected %d but was %d\n"
                  ANSI_COLOR_RESET,
-                 roman_values[ii], expected_arabic_values[ii], arabicValue);
+                 roman_values[ii], arabic_values[ii], arabicValue);
          printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, roman_values[ii], arabicValue); 
      }
      printf("\n");
