@@ -1,3 +1,4 @@
+#include <roman_utils.h>
 #include <check.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,12 +21,6 @@ char * roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
                            "C","CCII", "CCCXXX", "CD", "CDLXXXII", "CDC", "CM", "M", "MMI",
                            "MMMXXX", "MMMMCD", "MMMMCDCDXCIV", "MMMMCMXCIX"};
 
-char * add(char * a, char * b);
-char * add(char * a, char * b)
-{
-   return roman_values[6];
-}
-
 
 START_TEST (subtraction)
 {
@@ -35,13 +30,14 @@ END_TEST
 
 START_TEST (addition)
 {
-/* TODO - Start with this failing test
-     printf("\n");
-
      char * expectedSum = "II";
      char * leftAddend = "I";
      char * rightAddend = "I";
-     char * sumResult = add(leftAddend, rightAddend);
+     char sumResult [20];
+     add (leftAddend, rightAddend, (char *) sumResult);
+
+//void add (char * leftAddend, char * rightAddend, char * sum);
+
      ck_assert_msg(strcmp(expectedSum, sumResult) == 0,
                  ANSI_COLOR_RED
                  "\n%s + %s expected %s but was %s\n"
@@ -50,7 +46,6 @@ START_TEST (addition)
 
      printf(ANSI_COLOR_GREEN "%s + %s = %s\n" ANSI_COLOR_RESET, leftAddend, rightAddend, sumResult);
      printf("\n");
-*/
 }
 END_TEST
 
@@ -58,7 +53,7 @@ START_TEST (to_roman)
 {
     char romanResult[15]; // TODO - 15 is probably a little big. Longest roman numeral in test is "MMMMDCCCXCIV"
 
-    for (int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
+    for (unsigned int ii=0; ii< sizeof(arabic_values)/sizeof(int); ii++)
     {
         arabic_to_roman(arabic_values[ii], romanResult);
 
@@ -78,7 +73,7 @@ END_TEST
 START_TEST (to_arabic)
 {
      printf("\n");
-     for (int ii=0; ii < sizeof(arabic_values)/sizeof(int); ii++)
+     for (unsigned int ii=0; ii < sizeof(arabic_values)/sizeof(int); ii++)
      {
          int arabicValue = roman_to_arabic(roman_values[ii]);
 

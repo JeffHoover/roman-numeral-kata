@@ -1,5 +1,19 @@
 #include <roman_utils.h>
+#include <arabic_to_roman.h>
+#include <roman_to_arabic.h>
 #include <string.h>
+#include<stdio.h>
+
+void add (char * leftAddend, char * rightAddend, char * sum)
+{
+//int roman_to_arabic(char * romanNumeral)
+//void arabic_to_roman (unsigned int arabicValue, char * romanResult)
+
+    int leftArabic = roman_to_arabic(leftAddend);
+    int rightArabic = roman_to_arabic(rightAddend);
+
+    arabic_to_roman (leftArabic + rightArabic, sum);
+}
 
 int lookup_addend_for(char romanDigit)
 {
@@ -25,10 +39,10 @@ int lookup_addend_for(char romanDigit)
 
 void find_arabic_addends(int * arabicAddends, char *romanNumeral)
 {
-	for (int ii=0; ii< strlen(romanNumeral); ii++)
-	{
-		arabicAddends[ii] = lookup_addend_for(*(romanNumeral + ii));
-	}
+   for (unsigned int ii=0; ii< strlen(romanNumeral); ii++)
+   {
+      arabicAddends[ii] = lookup_addend_for(*(romanNumeral + ii));
+   }
 }
 
 int compute_arabic_from_addends(int * arabicAddends, int numberOfRomanDigits)
