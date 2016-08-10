@@ -20,6 +20,40 @@ char * roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
                            "C","CCII", "CCCXXX", "CD", "CDLXXXII", "CDC", "CM", "M", "MMI",
                            "MMMXXX", "MMMMCD", "MMMMCDCDXCIV", "MMMMCMXCIX"};
 
+char * add(char * a, char * b);
+char * add(char * a, char * b)
+{
+   return roman_values[6];
+}
+
+
+START_TEST (subtraction)
+{
+
+}
+END_TEST
+
+START_TEST (addition)
+{
+/* TODO - Start with this failing test
+     printf("\n");
+
+     char * expectedSum = "II";
+     char * leftAddend = "I";
+     char * rightAddend = "I";
+     char * sumResult = add(leftAddend, rightAddend);
+     ck_assert_msg(strcmp(expectedSum, sumResult) == 0,
+                 ANSI_COLOR_RED
+                 "\n%s + %s expected %s but was %s\n"
+                 ANSI_COLOR_RESET,
+                 leftAddend, rightAddend, expectedSum, sumResult);
+
+     printf(ANSI_COLOR_GREEN "%s + %s = %s\n" ANSI_COLOR_RESET, leftAddend, rightAddend, sumResult);
+     printf("\n");
+*/
+}
+END_TEST
+
 START_TEST (to_roman)
 {
     char romanResult[15]; // TODO - 15 is probably a little big. Longest roman numeral in test is "MMMMDCCCXCIV"
@@ -71,6 +105,14 @@ Suite * roman_suite (void)
   TCase *tc_to_roman = tcase_create ("ArabicToRoman");
   tcase_add_test (tc_to_roman, to_roman);
   suite_add_tcase (s, tc_to_roman);
+
+  TCase *tc_addition = tcase_create ("Addition");
+  tcase_add_test (tc_addition, addition);
+  suite_add_tcase (s, tc_addition);
+
+  TCase *tc_subtraction = tcase_create ("Subtraction");
+  tcase_add_test (tc_subtraction, subtraction);
+  suite_add_tcase (s, tc_subtraction);
 
   return s;
 }
