@@ -6,7 +6,6 @@
 unsigned int incrementalValue[] = {1000, 900, 400, 100, 90, 50, 40, 10, 9, 5, 4 };
 char * romanDigit[] = {"M","CM", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV"};
 
-// TODO - Could I pass arabicValue as an int and return it?
 void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue);
 void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue)
 {

@@ -5,15 +5,13 @@
 
 int roman_to_arabic(char * romanNumeral)
 {
-	int numberOfRomanDigits = strlen(romanNumeral);
+  int numberOfRomanDigits = strlen(romanNumeral);
 
-	int * arabicAddends = (int *) malloc(numberOfRomanDigits * sizeof(int));
-	find_arabic_addends(arabicAddends, romanNumeral);
+  int arabicAddends [20];
+  find_arabic_addends(arabicAddends, romanNumeral);
 
-	int arabicValue = compute_arabic_from_addends(arabicAddends, numberOfRomanDigits);
+  int arabicValue = compute_arabic_from_addends(arabicAddends, numberOfRomanDigits);
 
-	free (arabicAddends);
-
-	return arabicValue;
+  return arabicValue;
 }
 
