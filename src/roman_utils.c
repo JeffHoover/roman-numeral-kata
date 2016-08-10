@@ -6,14 +6,23 @@
 
 void add (char * leftAddend, char * rightAddend, char * sum)
 {
-//int roman_to_arabic(char * romanNumeral)
-//void arabic_to_roman (unsigned int arabicValue, char * romanResult)
-
+// TODO - inline these?
     int leftArabic = roman_to_arabic(leftAddend);
     int rightArabic = roman_to_arabic(rightAddend);
 
     arabic_to_roman (leftArabic + rightArabic, sum);
 }
+
+
+void subtract (char * minuend, char * subtrahend, char * differenceResult)
+{
+// TODO - inline these?
+    int minuendArabic = roman_to_arabic(minuend);
+    int subtrahendArabic = roman_to_arabic(subtrahend);
+
+    arabic_to_roman (minuendArabic - subtrahendArabic, differenceResult);
+}
+
 
 int lookup_addend_for(char romanDigit)
 {

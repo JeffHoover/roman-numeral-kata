@@ -24,6 +24,21 @@ char * roman_values [] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
 
 START_TEST (subtraction)
 {
+     char * expectedDifference = "III";
+     char * minuend = "IV";
+     char * subtrahend = "I";
+     char differenceResult [20];
+     subtract (minuend, subtrahend, (char *) differenceResult);
+
+     // Can I clean up the message, maybe factoring out a function?
+     ck_assert_msg(strcmp(expectedDifference, differenceResult) == 0,
+                 ANSI_COLOR_RED
+                 "\n%s - %s expected %s but was %s\n"
+                 ANSI_COLOR_RESET,
+                 minuend, subtrahend, expectedDifference, differenceResult);
+
+     printf(ANSI_COLOR_GREEN "%s - %s = %s\n" ANSI_COLOR_RESET, minuend, subtrahend, differenceResult);
+     printf("\n");
 
 }
 END_TEST
@@ -36,8 +51,7 @@ START_TEST (addition)
      char sumResult [20];
      add (leftAddend, rightAddend, (char *) sumResult);
 
-//void add (char * leftAddend, char * rightAddend, char * sum);
-
+     // Can I clean up the message, maybe factoring out a function?
      ck_assert_msg(strcmp(expectedSum, sumResult) == 0,
                  ANSI_COLOR_RED
                  "\n%s + %s expected %s but was %s\n"
