@@ -16,8 +16,8 @@ void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValu
     }
 }
 
-unsigned int incrementalValue[] = {10, 9, 5, 4 };
-char * romanDigit[] = {"X", "IX", "V", "IV"};
+unsigned int incrementalValue[] = {40, 10, 9, 5, 4 };
+char * romanDigit[] = {"XL", "X", "IX", "V", "IV"};
 
 void arabic_to_roman (unsigned int arabicValue, char * romanResult)
 {
