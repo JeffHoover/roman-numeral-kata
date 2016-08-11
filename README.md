@@ -37,6 +37,7 @@ Using ansi color escape sequences, passing output is shown in green and failing 
 #Usage:
 
 cd src
+
 make
 
 
@@ -53,35 +54,4 @@ make
 - test (builds tests)
 
 - roman (builds the implementation)
-
-
-#Directory Structure:
-
-.
-├── include
-│   ├── arabic_to_roman.h
-│   ├── roman_to_arabic.h
-│   └── roman_utils.h
-├── lib
-├── README.md
-├── src
-│   ├── arabic_to_roman.c
-│   ├── arabic_to_roman.o
-│   ├── makefile
-│   ├── obj
-│   │   ├── arabic_to_roman.o
-│   │   ├── roman.o
-│   │   ├── roman_to_arabic.o
-│   │   └── roman_utils.o
-│   ├── roman
-│   ├── roman.c
-│   ├── roman_to_arabic.c
-│   ├── roman_to_arabic.o
-│   ├── roman_utils.c
-│   ├── roman_utils.o
-│   └── test
-└── tests
-    ├── obj
-    │   └── test_roman_numbers.o
-    └── test_roman_numbers.c
 
