@@ -66,5 +66,5 @@ make
 
 - I'd package the implementation in a library (.a file) and provide a minimal .h file.
 
+- I'd add more test data for addition and subtraction, just to convince myself.
 
- 
