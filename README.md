@@ -56,9 +56,7 @@ make
 - roman (builds the implementation)
 
 
-#Random Notes:
-
-If I wanted to spend more time, I would address:
+#If I wanted to spend more time, I would address:
 
 - Find and use a tool that can reformat .c files and fix indentation. Currently different files have different indentations.
 
