@@ -6,21 +6,15 @@
 
 void add (char * leftAddend, char * rightAddend, char * sum)
 {
-// TODO - inline these?
-    int leftArabic = roman_to_arabic(leftAddend);
-    int rightArabic = roman_to_arabic(rightAddend);
-
-    arabic_to_roman (leftArabic + rightArabic, sum);
+    // Originally, I didn't inline the roman_to_arabic calls below. I think I like this better.
+    // (Same in subtract function below.)
+    arabic_to_roman (roman_to_arabic(leftAddend) + roman_to_arabic(rightAddend), sum);
 }
 
 
 void subtract (char * minuend, char * subtrahend, char * differenceResult)
 {
-// TODO - inline these?
-    int minuendArabic = roman_to_arabic(minuend);
-    int subtrahendArabic = roman_to_arabic(subtrahend);
-
-    arabic_to_roman (minuendArabic - subtrahendArabic, differenceResult);
+    arabic_to_roman (roman_to_arabic(minuend) - roman_to_arabic(subtrahend), differenceResult);
 }
 
 
