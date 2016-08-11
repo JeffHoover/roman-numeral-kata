@@ -2,7 +2,6 @@
 
 https://drive.google.com/a/pillartechnology.com/file/d/0Bz26C0WuteyRSG1yY1g2ZTNKVmM/view?usp=sharing  
 
-
 - Ubuntu Linux 14.04
 
 - The C programming language
@@ -15,52 +14,69 @@ https://drive.google.com/a/pillartechnology.com/file/d/0Bz26C0WuteyRSG1yY1g2ZTNK
 
 - git
 
+Additionally, I use valgrind http://valgrind.org/ to detect subtle errors with memory management etc.
 
-NOTE: check_roman.c has one test case that loops through values and expected results.
-I find this readable, but it has the downside of not showing the number of data points tested:
+# Information on Tests:
 
-    Running suite(s): Conversion to Roman Number Unit Tests
-    100%: Checks: 1, Failures: 0, Errors: 0
+The file ./tests/test_roman_numbers.c has four test cases in a single test suite "Roman Numeral Unit Tests":
+"RomanToArabic"
+"ArabicToRoman”
+“Addition”
+“Subtraction”
 
-As a compromise, I am printf()ing the value and expectation of each data point as it they are tested:
-   convert(1) should be I
+Each test case covers all the test data for that operation and writes results to the console.
+An example of each type of output is:
 
+convert_roman_to_arabic(I) = 1
+convert_arabic_to_roman(1) = I
+I + I = II
+IV - I = III
 
-To build:  
-  cd src  
-  make  
-
-To build and run tests:  
-  cd src  
-  make run-test  
-
-To run tests:  
-  cd src  
-  ./test  
-  
-To run app:  
-  cd src  
-  roman  
-  
-├── include  
-│   └── roman.h  
-├── lib  
-│   └──  
-├── README.md  
-├── src  
-│   ├── makefile  
-│   ├── obj  
-│   │   └──  
-│   ├── roman.c  
-│   ├── romanfunc.c  
-└── tests  
-    ├── check_roman.c  
-    └── obj  
-        └──  
+Using ansi color escape sequences, passing output is shown in green and failing output is shown in red.
 
 
-To build and run tests, including valgrind:
+# Most Useful Make Targets:
 
-  cd src  
-  make  
+- all (cleans all binaries, builds implementation and tests, runs tests including valgrind)
+
+- check (runs tests including valgrind)
+
+# Other Make Targets:
+
+- clean (cleans all binaries)
+
+- test (builds tests)
+
+- roman (builds the implementation)
+
+
+#Directory Structure:
+
+.
+├── include
+│   ├── arabic_to_roman.h
+│   ├── roman_to_arabic.h
+│   └── roman_utils.h
+├── lib
+├── README.md
+├── src
+│   ├── arabic_to_roman.c
+│   ├── arabic_to_roman.o
+│   ├── makefile
+│   ├── obj
+│   │   ├── arabic_to_roman.o
+│   │   ├── roman.o
+│   │   ├── roman_to_arabic.o
+│   │   └── roman_utils.o
+│   ├── roman
+│   ├── roman.c
+│   ├── roman_to_arabic.c
+│   ├── roman_to_arabic.o
+│   ├── roman_utils.c
+│   ├── roman_utils.o
+│   └── test
+└── tests
+    ├── obj
+    │   └── test_roman_numbers.o
+    └── test_roman_numbers.c
 
