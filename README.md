@@ -1,6 +1,18 @@
 #Roman Numeral Calculator Kata  
-Jeff Hoover  
+
 https://drive.google.com/a/pillartechnology.com/file/d/0Bz26C0WuteyRSG1yY1g2ZTNKVmM/view?usp=sharing  
+
+- Ubuntu Linux 14.04
+
+- The C programming language
+
+- GNU GCC compiler tool chain
+
+- GNU Make
+
+- Check unit testing framework ( https://libcheck.github.io/check/ )
+
+- git
 
 
 NOTE: check_roman.c has one test case that loops through values and expected results.
@@ -11,7 +23,6 @@ I find this readable, but it has the downside of not showing the number of data 
 
 As a compromise, I am printf()ing the value and expectation of each data point as it they are tested:
    convert(1) should be I
-
 
 
 To build:  
@@ -45,4 +56,10 @@ To run app:
     ├── check_roman.c  
     └── obj  
         └──  
+
+
+To build and run tests, including valgrind:
+
+  cd src  
+  make  
 
