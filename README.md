@@ -34,6 +34,11 @@ IV - I = III
 
 Using ansi color escape sequences, passing output is shown in green and failing output is shown in red.
 
+#Usage:
+
+cd src
+make
+
 
 # Most Useful Make Targets:
 
