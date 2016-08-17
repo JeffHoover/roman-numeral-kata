@@ -114,7 +114,6 @@ Suite * roman_suite (void)
 
   TCase *tc_to_roman = tcase_create ("ArabicToRoman");
   tcase_add_loop_test(tc_to_roman, to_roman, 0, VALID_DATA_COUNT);
-  tcase_add_test (tc_to_roman, to_roman);
   suite_add_tcase (s, tc_to_roman);
 
   TCase *tc_addition = tcase_create ("Addition");
