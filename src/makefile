@@ -13,6 +13,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _$(ODIR)/%.o: %.c $(DEPS)
 obj/%.o: %.c $(DEPS)
+	@mkdir -p obj
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
 all: clean roman test valgrind_roman valgrind_test
@@ -29,6 +30,7 @@ roman: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) 
 
 ../tests/obj/test_roman_numbers.o: ../tests/test_roman_numbers.c $(DEPS)
+	@mkdir -p ../tests/obj
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
 test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o roman_utils.o
