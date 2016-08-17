@@ -9,7 +9,7 @@ LDIR =../lib
 _DEPS = arabic_to_roman.h roman_to_arabic.h roman_utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = arabic_to_roman.o roman.o roman_to_arabic.o roman_utils.o
+_OBJ = arabic_to_roman.o roman_to_arabic.o roman_utils.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _$(ODIR)/%.o: %.c $(DEPS)
@@ -17,19 +17,13 @@ obj/%.o: %.c $(DEPS)
 	@mkdir -p obj
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-all: clean roman test valgrind_roman valgrind_test
+all: clean test valgrind_test
 
 check: test valgrind_test
-
-valgrind_roman:
-	valgrind ./roman 
 
 valgrind_test:
 	valgrind ./test
 	$(COV) *.c 
-
-roman: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) 
 
 ../tests/obj/test_roman_numbers.o: ../tests/test_roman_numbers.c $(DEPS)
 	@mkdir -p ../tests/obj
@@ -41,5 +35,5 @@ test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o roma
 .PHONY: clean
 
 clean:
-	rm -f *.o $(ODIR)/*.* ../tests/$(ODIR)/*.* ./test ./roman
+	rm -f *.o $(ODIR)/*.* ../tests/$(ODIR)/*.* ./test
 	rm -f *.gcda *.gcno *.gcov
