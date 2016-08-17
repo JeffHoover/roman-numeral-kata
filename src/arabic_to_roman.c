@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <arabic_to_roman.h>
+#include <string.h>
 
 void appendZeroToThreeTrailingIdigits(int arabicValue, char * romanResult);
+void compute_roman_digit(unsigned int *arabicValue, unsigned int incrementalValue, char * romanDigit, char * romanValue);
 
 unsigned int incrementalValue[] = {1000, 900, 400, 100, 90, 50, 40, 10, 9, 5, 4 };
 char * romanDigit[] = {"M","CM", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV"};
