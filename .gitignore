@@ -4,3 +4,16 @@ src/roman
 src/test
 src/obj/*.o
 tests/obj/*.o
+
+# code coveage artifacts
+src/*.gcov
+src/*.gcda
+src/*.gcno
+
+src/obj/*.gcov
+src/obj/*.gcda
+src/obj/*.gcno
+
+tests/obj/*.gcov
+tests/obj/*.gcda
+tests/obj/*.gcno

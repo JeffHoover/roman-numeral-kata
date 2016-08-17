@@ -1,6 +1,7 @@
 IDIR =../include
 CC=gcc
-CFLAGS=-I$(IDIR) -std=c99 -O0 -g -Wall -Wextra
+COV=gcov
+CFLAGS=-I$(IDIR) -std=c99 -O0 -g -Wall -Wextra -fprofile-arcs -ftest-coverage
 
 ODIR=obj
 LDIR =../lib
@@ -25,6 +26,7 @@ valgrind_roman:
 
 valgrind_test:
 	valgrind ./test
+	$(COV) *.c 
 
 roman: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) 
@@ -36,11 +38,8 @@ roman: $(OBJ)
 test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o roman_utils.o
 	$(CC) -pthread -o $@ -o $@ $^ $(CFLAGS) -l check -lm -lrt 
 
-run-test: clean test roman valgrind_test valgrind_roman
-	./test
-
 .PHONY: clean
 
 clean:
-	rm -f *.o $(ODIR)/*.o *~ core $(INCDIR)/*~ ./roman ../tests/$(ODIR)/*.o ./test 
-
+	rm -f *.o $(ODIR)/*.* ../tests/$(ODIR)/*.* ./test ./roman
+	rm -f *.gcda *.gcno *.gcov
