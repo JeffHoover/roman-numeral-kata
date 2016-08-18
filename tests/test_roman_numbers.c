@@ -9,7 +9,7 @@
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
-#define VALID_DATA_COUNT 41 
+#define VALID_DATA_COUNT 40 
 
 // If I wanted to spend more time,
 // I would make it easier to eyeball the arabic/roman pairs. That might be a big-ish refactor.
@@ -18,13 +18,13 @@ int arabic_values [VALID_DATA_COUNT] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                         11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
                         24, 40, 47, 50, 67, 74, 90, 99,
                         100, 202, 330, 400, 482, 500, 900, 1000,
-                        2001, 3030, 4400, 4894, 4999};
+                        2001, 3030, 4000, 0};
 
 char * roman_values [VALID_DATA_COUNT] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
                                           "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", 
                          "XXIV", "XL", "XLVII", "L", "LXVII", "LXXIV", "XC", "XCIX",
                           "C","CCII", "CCCXXX", "CD", "CDLXXXII", "CDC", "CM", "M",
-                          "MMI", "MMMXXX", "MMMMCD", "MMMMCDCDXCIV", "MMMMCMXCIX"};
+                          "MMI", "MMMXXX", "INPUT_OUT_OF_RANGE", "INPUT_OUT_OF_RANGE"};
 
 START_TEST (subtraction)
 {
@@ -72,8 +72,8 @@ END_TEST
 
 START_TEST (to_roman)
 {
-    char romanResult[15]; // This might be a few bytes too big. I'm ok with that.
-                          // Longest roman numeral in test is "MMMMDCCCXCIV"
+    char romanResult[20]; // This might be a few bytes too big. I'm ok with that.
+                          // Longest roman numeral in test is "MMMMDCCCXCIV". Error message is 18 long.
 
     arabic_to_roman(arabic_values[_i], romanResult);
 
@@ -109,7 +109,7 @@ Suite * roman_suite (void)
   Suite *s = suite_create ("Roman Numeral Unit Tests");
 
   TCase *tc_to_arabic = tcase_create ("RomanToArabic");
-  tcase_add_loop_test(tc_to_arabic, to_arabic, 0, VALID_DATA_COUNT);
+  tcase_add_loop_test(tc_to_arabic, to_arabic, 0, VALID_DATA_COUNT - 2);
   suite_add_tcase (s, tc_to_arabic);
 
   TCase *tc_to_roman = tcase_create ("ArabicToRoman");

@@ -9,6 +9,13 @@ char * romanDigit[] = {"M","CM", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV
 
 void arabic_to_roman (unsigned int arabicValue, char * romanResult)
 {
+    if (arabicValue < 1 || arabicValue > 3999)
+    {
+       // TODO - Check if romanResult is too short? 
+       strcpy(romanResult, "INPUT_OUT_OF_RANGE");
+       return;
+    }
+
     romanResult[0] = 0;
 
     for (unsigned int ii=0; ii< sizeof(incrementalValue)/sizeof(int); ii++)
