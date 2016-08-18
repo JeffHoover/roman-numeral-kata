@@ -102,7 +102,47 @@ START_TEST (to_arabic)
 }
 END_TEST
 
+START_TEST (to_arabic_bad_data)
+{
+     int expectedFailure = -1;
 
+     int arabicValue = roman_to_arabic(NULL);
+     ck_assert_msg(arabicValue == expectedFailure,
+             ANSI_COLOR_RED
+             "convert_roman_to_arabic(NULL) expected %d but was %d\n"
+             ANSI_COLOR_RESET,
+             expectedFailure, arabicValue);
+     printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(NULL) = %d\n" ANSI_COLOR_RESET, arabicValue); 
+
+     arabicValue = roman_to_arabic("");
+     ck_assert_msg(arabicValue == expectedFailure,
+             ANSI_COLOR_RED
+             "convert_roman_to_arabic(\"\") expected %d but was %d\n"
+             ANSI_COLOR_RESET,
+             expectedFailure, arabicValue);
+     printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(\"\") = %d\n" ANSI_COLOR_RESET, arabicValue); 
+
+/*
+     char * badValue = "bad_value";
+     arabicValue = roman_to_arabic(badValue);
+     ck_assert_msg(arabicValue == expectedFailure,
+             ANSI_COLOR_RED
+             "convert_roman_to_arabic(%s) expected %d but was %d\n"
+             ANSI_COLOR_RESET,
+             badValue, expectedFailure, arabicValue);
+     printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, badValue, arabicValue); 
+
+     badValue = "XVRRR";
+     arabicValue = roman_to_arabic(badValue);
+     ck_assert_msg(arabicValue == expectedFailure,
+             ANSI_COLOR_RED
+             "convert_roman_to_arabic(%s) expected %d but was %d\n"
+             ANSI_COLOR_RESET,
+             badValue, expectedFailure, arabicValue);
+     printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, badValue, arabicValue); 
+*/
+}
+END_TEST
 
 Suite * roman_suite (void)
 {
@@ -115,6 +155,10 @@ Suite * roman_suite (void)
   TCase *tc_to_roman = tcase_create ("ArabicToRoman");
   tcase_add_loop_test(tc_to_roman, to_roman, 0, VALID_DATA_COUNT);
   suite_add_tcase (s, tc_to_roman);
+
+  TCase *tc_to_arabic_bad_data = tcase_create ("RomanToArabic_bad_data");
+  tcase_add_test(tc_to_arabic_bad_data, to_arabic_bad_data);
+  suite_add_tcase (s, tc_to_arabic_bad_data);
 
   TCase *tc_addition = tcase_create ("Addition");
   tcase_add_test (tc_addition, addition);

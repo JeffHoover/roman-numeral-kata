@@ -7,14 +7,16 @@ int compute_arabic_from_addends(int * arabicAddends, int numberOfRomanDigits);
 
 int roman_to_arabic(char * romanNumeral)
 {
-  int numberOfRomanDigits = strlen(romanNumeral);
+  if (romanNumeral == NULL)
+  {
+      return -1;
+  }
 
   int arabicAddends [20]; // Might be a few bytes too big. I'm ok with that.
+
   find_arabic_addends(arabicAddends, romanNumeral);
 
-  int arabicValue = compute_arabic_from_addends(arabicAddends, numberOfRomanDigits);
-
-  return arabicValue;
+  return compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
 }
 
 int lookup_addend_for(char romanDigit)
@@ -35,12 +37,17 @@ int lookup_addend_for(char romanDigit)
 		case 'M':
 			return 1000;
 		default:
-			return 0; // TODO - Coverage tool reports that this line is not covered.
+			return -1; // TODO - not covered by test?
 	}
 }
 
 void find_arabic_addends(int * arabicAddends, char *romanNumeral)
 {
+   if (arabicAddends == NULL || romanNumeral == NULL)
+   {
+      return;
+   }
+
    for (unsigned int ii=0; ii< strlen(romanNumeral); ii++)
    {
       arabicAddends[ii] = lookup_addend_for(*(romanNumeral + ii));
@@ -49,23 +56,23 @@ void find_arabic_addends(int * arabicAddends, char *romanNumeral)
 
 int compute_arabic_from_addends(int * arabicAddends, int numberOfRomanDigits)
 {
-	if (numberOfRomanDigits < 1)
-	{
-		return 0;
-	}
+   if (arabicAddends == NULL || numberOfRomanDigits < 1)
+   {
+      return -1;
+   }
 
-	int arabicValue = arabicAddends[numberOfRomanDigits-1];
-	for (int ii=0; ii< numberOfRomanDigits-1; ii++)
-	{
-		if (arabicAddends[ii] < arabicAddends[ii+1])
-		{
-			arabicValue -= arabicAddends[ii];
-		}
-		else
-		{
-			arabicValue += arabicAddends[ii];
-		}
-	}
-	return arabicValue;
+   int arabicValue = arabicAddends[numberOfRomanDigits-1];
+   for (int ii=0; ii< numberOfRomanDigits-1; ii++)
+   {
+      if (arabicAddends[ii] < arabicAddends[ii+1])
+      {
+         arabicValue -= arabicAddends[ii];
+      }
+      else
+      {
+         arabicValue += arabicAddends[ii];
+      }
+   }
+   return arabicValue;
 }
 
