@@ -1,6 +1,22 @@
 #include <roman_to_arabic.h>
 #include <string.h>
 
+int lookup_addend_for(char romanDigit);
+void find_arabic_addends(int * arabicAddends, char *romanNumeral);
+int compute_arabic_from_addends(int * arabicAddends, int numberOfRomanDigits);
+
+int roman_to_arabic(char * romanNumeral)
+{
+  int numberOfRomanDigits = strlen(romanNumeral);
+
+  int arabicAddends [20]; // Might be a few bytes too big. I'm ok with that.
+  find_arabic_addends(arabicAddends, romanNumeral);
+
+  int arabicValue = compute_arabic_from_addends(arabicAddends, numberOfRomanDigits);
+
+  return arabicValue;
+}
+
 int lookup_addend_for(char romanDigit)
 {
 	switch(romanDigit) {
@@ -19,7 +35,7 @@ int lookup_addend_for(char romanDigit)
 		case 'M':
 			return 1000;
 		default:
-			return 0;
+			return 0; // TODO - Coverage tool reports that this line is not covered.
 	}
 }
 
@@ -53,14 +69,3 @@ int compute_arabic_from_addends(int * arabicAddends, int numberOfRomanDigits)
 	return arabicValue;
 }
 
-int roman_to_arabic(char * romanNumeral)
-{
-  int numberOfRomanDigits = strlen(romanNumeral);
-
-  int arabicAddends [20]; // Might be a few bytes too big. I'm ok with that.
-  find_arabic_addends(arabicAddends, romanNumeral);
-
-  int arabicValue = compute_arabic_from_addends(arabicAddends, numberOfRomanDigits);
-
-  return arabicValue;
-}
