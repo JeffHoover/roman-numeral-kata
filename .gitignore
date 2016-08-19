@@ -17,3 +17,9 @@ src/obj/*.gcno
 tests/obj/*.gcov
 tests/obj/*.gcda
 tests/obj/*.gcno
+
+# indent backup files
+src/*.c~
+tests/*.c~
+src/obj/*.c~
+tests/obj/*.c~
