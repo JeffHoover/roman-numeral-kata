@@ -37,3 +37,5 @@ test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o roma
 clean:
 	rm -f *.o $(ODIR)/*.* ../tests/$(ODIR)/*.* ./test
 	rm -f *.gcda *.gcno *.gcov
+	rm -f *.c~ ../tests/*.c~
+

@@ -14,7 +14,8 @@ https://drive.google.com/a/pillartechnology.com/file/d/0Bz26C0WuteyRSG1yY1g2ZTNK
 
 - git
 
-Additionally, I use valgrind http://valgrind.org/ to detect subtle errors with memory management etc.
+Additionally, I use valgrind http://valgrind.org/ to detect subtle errors with memory management etc
+and 'indent' (sudo apt-get install indent) to clean up source files using -linux and -i4 args.
 
 # Information on Tests:
 
@@ -58,13 +59,5 @@ make
 
 #If I wanted to spend more time, I would address:
 
-- Find and use a tool that can reformat .c files and fix indentation. Currently different files have different indentations.
-
-- Not all functions are probably in the right .c files.
-
-- I may have circular includes. I have used the #ifndef / #define strategy to protect myself from it. But I'd also fix it.
-
 - I'd package the implementation in a library (.a file) and provide a minimal .h file.
-
-- I'd add more test data for addition and subtraction, just to convince myself.
 
