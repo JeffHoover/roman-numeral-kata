@@ -11,9 +11,9 @@ int roman_to_arabic(char *romanNumeral)
 	return -1;
     }
 
-    for (unsigned int ii=0; ii<strlen(romanNumeral); ii++) {
-    if (strchr("IVXCLDM", romanNumeral[ii]) == NULL)
-        return -1;
+    for (unsigned int ii = 0; ii < strlen(romanNumeral); ii++) {
+	if (strchr("IVXCLDM", romanNumeral[ii]) == NULL)
+	    return -1;
     }
 
     int arabicAddends[20];	// Might be a few bytes too big. I'm ok with that.
