@@ -2,13 +2,16 @@
 #include <check.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <msg_asserts.h>
 #include <arabic_to_roman.h>
 #include <roman_to_arabic.h>
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
+// TODO - remove these when not needed
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
+
 #define VALID_DATA_COUNT 40 
 
 // If I wanted to spend more time,
@@ -34,18 +37,9 @@ START_TEST (subtraction)
      char differenceResult [20];
      subtract (minuend, subtrahend, (char *) differenceResult);
 
-     // If I wanted to spend more time,
-     // I would try to extract some of the stuff below into a function that reads better
-     // same for all the ck_assert_msg calls in this file.
-     ck_assert_msg(strcmp(expectedDifference, differenceResult) == 0,
-                 ANSI_COLOR_RED
-                 "\n%s - %s expected %s but was %s\n"
-                 ANSI_COLOR_RESET,
-                 minuend, subtrahend, expectedDifference, differenceResult);
+     check_subtraction_result(minuend, subtrahend, expectedDifference, differenceResult);
 
-     printf(ANSI_COLOR_GREEN "%s - %s = %s\n" ANSI_COLOR_RESET, minuend, subtrahend, differenceResult);
      printf("\n");
-
 }
 END_TEST
 
@@ -59,37 +53,10 @@ START_TEST (addition)
      printf("\n");
      add (leftAddend, rightAddend, (char *) sumResult);
 
-     ck_assert_msg(strcmp(expectedSum, sumResult) == 0,
-                 ANSI_COLOR_RED
-                 "%s + %s expected %s but was %s\n"
-                 ANSI_COLOR_RESET,
-                 leftAddend, rightAddend, expectedSum, sumResult);
-
-     printf(ANSI_COLOR_GREEN "%s + %s = %s\n" ANSI_COLOR_RESET, leftAddend, rightAddend, sumResult);
+     check_addition_result(leftAddend, rightAddend, expectedSum, sumResult);
 }
 END_TEST
 
-// TODO - pull out to separacte .c and .h file
-void check_result(unsigned int input, char * expected, char * actual, char * funcName){
-    ck_assert_msg(strcmp(actual, expected) == 0,
-        ANSI_COLOR_RED
-        "%s(%d) expected %s but was %s\n"
-             ANSI_COLOR_RESET,
-             funcName, input, expected, actual);
-
-     printf(ANSI_COLOR_GREEN "%s(%d) = %s\n" ANSI_COLOR_RESET , funcName, input, actual);
-}
-
-// TODO - pull out to separacte .c and .h file
-void check_result_i(char * input, unsigned int expected, unsigned int actual, char * funcName){
-    ck_assert_msg(actual == expected,
-        ANSI_COLOR_RED
-        "%s(%s) expected %d but was %d\n"
-             ANSI_COLOR_RESET,
-             funcName, input, expected, actual);
-
-     printf(ANSI_COLOR_GREEN "%s(%s) = %d\n" ANSI_COLOR_RESET , funcName, input, actual);
-}
 
 START_TEST (to_roman)
 {
