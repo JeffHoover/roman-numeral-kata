@@ -69,36 +69,43 @@ START_TEST (addition)
 }
 END_TEST
 
+void check_result(unsigned int input, char * expected, char * actual, char * funcName){
+    ck_assert_msg(strcmp(actual, expected) == 0,
+        ANSI_COLOR_RED
+        "%s(%d) expected %s but was %s\n"
+             ANSI_COLOR_RESET,
+             funcName, input, expected, actual);
+
+     printf(ANSI_COLOR_GREEN "%s(%d) = %s\n" ANSI_COLOR_RESET , funcName, input, actual);
+}
 
 START_TEST (to_roman)
 {
-    char romanResult[20]; // This might be a few bytes too big. I'm ok with that.
-                          // Longest roman numeral in test is "MMMMDCCCXCIV". Error message is 18 long.
+    // This might be a few bytes too big. I'm ok with that.
+    // Longest roman numeral in test is "MMMMDCCCXCIV". Error message is 18 long.
+    char romanResult[20];
 
     arabic_to_roman(arabic_values[_i], romanResult);
 
-    ck_assert_msg(strcmp(romanResult, roman_values[_i])==0,
-        ANSI_COLOR_RED
-        "convert_arabic_to_roman(%d) expected %s but was %s\n"
-             ANSI_COLOR_RESET,
-             arabic_values[_i], roman_values[_i], romanResult);
-
-     printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET ,
-            arabic_values[_i], romanResult);
+    check_result(arabic_values[_i], roman_values[_i], romanResult, "convert_arabic_to_roman" );
 }
 END_TEST
+
+void check_result_i(char * input, unsigned int expected, unsigned int actual, char * funcName){
+    ck_assert_msg(actual == expected,
+        ANSI_COLOR_RED
+        "%s(%s) expected %d but was %d\n"
+             ANSI_COLOR_RESET,
+             funcName, input, expected, actual);
+
+     printf(ANSI_COLOR_GREEN "%s(%s) = %d\n" ANSI_COLOR_RESET , funcName, input, actual);
+}
 
 START_TEST (to_arabic)
 {
      int arabicValue = roman_to_arabic(roman_values[_i]);
 
-     ck_assert_msg(arabicValue == arabic_values[_i],
-             ANSI_COLOR_RED
-             "convert_roman_to_arabic(%s) expected %d but was %d\n"
-             ANSI_COLOR_RESET,
-             roman_values[_i], arabic_values[_i], arabicValue);
-     printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, roman_values[_i], arabicValue); 
-
+     check_result_i(roman_values[_i], arabic_values[_i], arabicValue, "convert_roman_to_arabic");
 }
 END_TEST
 
