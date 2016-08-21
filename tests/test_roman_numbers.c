@@ -98,7 +98,6 @@ START_TEST (to_arabic_bad_data)
              expectedFailure, arabicValue);
      printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(\"\") = %d\n" ANSI_COLOR_RESET, arabicValue); 
 
-/*
      char * badValue = "bad_value";
      arabicValue = roman_to_arabic(badValue);
      ck_assert_msg(arabicValue == expectedFailure,
@@ -116,7 +115,6 @@ START_TEST (to_arabic_bad_data)
              ANSI_COLOR_RESET,
              badValue, expectedFailure, arabicValue);
      printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, badValue, arabicValue); 
-*/
 }
 END_TEST
 
@@ -125,7 +123,7 @@ Suite * roman_suite (void)
   Suite *s = suite_create ("Roman Numeral Unit Tests");
 
   TCase *tc_to_arabic = tcase_create ("RomanToArabic");
-  tcase_add_loop_test(tc_to_arabic, to_arabic, 0, VALID_DATA_COUNT - 2);
+  tcase_add_loop_test(tc_to_arabic, to_arabic, 0, VALID_DATA_COUNT - 2); // Don't use 2 INPUT_OUT_OF_RANGE as to_arabic input
   suite_add_tcase (s, tc_to_arabic);
 
   TCase *tc_to_roman = tcase_create ("ArabicToRoman");
