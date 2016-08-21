@@ -69,6 +69,7 @@ START_TEST (addition)
 }
 END_TEST
 
+// TODO - pull out to separacte .c and .h file
 void check_result(unsigned int input, char * expected, char * actual, char * funcName){
     ck_assert_msg(strcmp(actual, expected) == 0,
         ANSI_COLOR_RED
@@ -77,6 +78,17 @@ void check_result(unsigned int input, char * expected, char * actual, char * fun
              funcName, input, expected, actual);
 
      printf(ANSI_COLOR_GREEN "%s(%d) = %s\n" ANSI_COLOR_RESET , funcName, input, actual);
+}
+
+// TODO - pull out to separacte .c and .h file
+void check_result_i(char * input, unsigned int expected, unsigned int actual, char * funcName){
+    ck_assert_msg(actual == expected,
+        ANSI_COLOR_RED
+        "%s(%s) expected %d but was %d\n"
+             ANSI_COLOR_RESET,
+             funcName, input, expected, actual);
+
+     printf(ANSI_COLOR_GREEN "%s(%s) = %d\n" ANSI_COLOR_RESET , funcName, input, actual);
 }
 
 START_TEST (to_roman)
@@ -90,16 +102,6 @@ START_TEST (to_roman)
     check_result(arabic_values[_i], roman_values[_i], romanResult, "convert_arabic_to_roman" );
 }
 END_TEST
-
-void check_result_i(char * input, unsigned int expected, unsigned int actual, char * funcName){
-    ck_assert_msg(actual == expected,
-        ANSI_COLOR_RED
-        "%s(%s) expected %d but was %d\n"
-             ANSI_COLOR_RESET,
-             funcName, input, expected, actual);
-
-     printf(ANSI_COLOR_GREEN "%s(%s) = %d\n" ANSI_COLOR_RESET , funcName, input, actual);
-}
 
 START_TEST (to_arabic)
 {
