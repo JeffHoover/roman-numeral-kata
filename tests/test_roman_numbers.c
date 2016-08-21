@@ -84,6 +84,7 @@ END_TEST START_TEST(to_arabic_bad_data)
     int expectedFailure = -1;
 
     int arabicValue = roman_to_arabic(NULL);
+    check_NULL_roman_input(arabicValue);
     ck_assert_msg(arabicValue == expectedFailure,
 		  ANSI_COLOR_RED
 		  "convert_roman_to_arabic(NULL) expected %d but was %d\n"

@@ -54,3 +54,15 @@ void check_addition_result(char *leftAddend, char *rightAddend,
     printf(ANSI_COLOR_GREEN "%s + %s = %s\n" ANSI_COLOR_RESET, leftAddend,
 	   rightAddend, sumResult);
 }
+
+
+void check_NULL_roman_input(int arabicValue) {
+    int expectedFailure = -1;
+
+    ck_assert_msg(arabicValue == expectedFailure,
+		  ANSI_COLOR_RED
+		  "convert_roman_to_arabic(NULL) expected %d but was %d\n"
+		  ANSI_COLOR_RESET, expectedFailure, arabicValue);
+    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(NULL) = %d\n"
+	   ANSI_COLOR_RESET, arabicValue);
+}
