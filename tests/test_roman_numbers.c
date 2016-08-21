@@ -7,10 +7,6 @@
 #include <roman_to_arabic.h>
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
-// TODO - remove these when not needed
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 #define DATA_COUNT 40
 
@@ -81,45 +77,23 @@ END_TEST START_TEST(to_arabic)
 
 END_TEST START_TEST(to_arabic_bad_data)
 {
-    int expectedFailure = -1;
-
+    // TODO - break these into tests. Rename check_result and check_result_i
     int arabicValue = roman_to_arabic(NULL);
     check_NULL_roman_input(arabicValue);
-    ck_assert_msg(arabicValue == expectedFailure,
-		  ANSI_COLOR_RED
-		  "convert_roman_to_arabic(NULL) expected %d but was %d\n"
-		  ANSI_COLOR_RESET, expectedFailure, arabicValue);
-    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(NULL) = %d\n"
-	   ANSI_COLOR_RESET, arabicValue);
 
     arabicValue = roman_to_arabic("");
-    ck_assert_msg(arabicValue == expectedFailure,
-		  ANSI_COLOR_RED
-		  "convert_roman_to_arabic(\"\") expected %d but was %d\n"
-		  ANSI_COLOR_RESET, expectedFailure, arabicValue);
-    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(\"\") = %d\n"
-	   ANSI_COLOR_RESET, arabicValue);
+    check_empty_roman_input(arabicValue);
 
     char *badValue = "bad_value";
     arabicValue = roman_to_arabic(badValue);
-    ck_assert_msg(arabicValue == expectedFailure,
-		  ANSI_COLOR_RED
-		  "convert_roman_to_arabic(%s) expected %d but was %d\n"
-		  ANSI_COLOR_RESET, badValue, expectedFailure, arabicValue);
-    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n"
-	   ANSI_COLOR_RESET, badValue, arabicValue);
+    check_bad_value(arabicValue, badValue);
 
     badValue = "XVRRR";
     arabicValue = roman_to_arabic(badValue);
-    ck_assert_msg(arabicValue == expectedFailure,
-		  ANSI_COLOR_RED
-		  "convert_roman_to_arabic(%s) expected %d but was %d\n"
-		  ANSI_COLOR_RESET, badValue, expectedFailure, arabicValue);
-    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n"
-	   ANSI_COLOR_RESET, badValue, arabicValue);
+    check_bad_value(arabicValue, badValue);
 }
 
-END_TEST Suite * roman_suite(void)
+END_TEST Suite *roman_suite(void)
 {
     Suite *s = suite_create("Roman Numeral Unit Tests");
 
