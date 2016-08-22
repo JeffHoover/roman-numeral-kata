@@ -72,3 +72,4 @@ int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRoma
     }
     return arabicValue;
 }
+

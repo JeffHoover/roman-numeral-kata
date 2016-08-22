@@ -4,7 +4,7 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #include <stdio.h>
 
-void check_arabic_to_roman(unsigned int input, char *expected, char *actual)
+void check_arabic_to_roman(const unsigned int input, const char *expected, const char *actual)
 {
     ck_assert_msg(strcmp(actual, expected) == 0,
 		  ANSI_COLOR_RED
@@ -15,8 +15,8 @@ void check_arabic_to_roman(unsigned int input, char *expected, char *actual)
 	   ANSI_COLOR_RESET, input, actual);
 }
 
-void check_roman_to_arabic(char *input, unsigned int expected,
-			   unsigned int actual)
+void check_roman_to_arabic(const char *input, const unsigned int expected,
+			   const unsigned int actual)
 {
     ck_assert_msg(actual == expected,
 		  ANSI_COLOR_RED
@@ -27,10 +27,9 @@ void check_roman_to_arabic(char *input, unsigned int expected,
 	   ANSI_COLOR_RESET, input, actual);
 }
 
-void check_subtraction_result(char *minuend, char *subtrahend, char *expected,
-			      char *actual)
+void check_subtraction_result(const char *minuend, const char *subtrahend, const char *expected,
+			      const char *actual)
 {
-
     ck_assert_msg(strcmp(expected, actual) == 0,
 		  ANSI_COLOR_RED
 		  "\n%s - %s expected %s but was %s\n"
@@ -40,10 +39,9 @@ void check_subtraction_result(char *minuend, char *subtrahend, char *expected,
 	   subtrahend, actual);
 }
 
-void check_addition_result(char *leftAddend, char *rightAddend,
-			   char *expectedSum, char *sumResult)
+void check_addition_result(const char *leftAddend, const char *rightAddend,
+			   const char *expectedSum, const char *sumResult)
 {
-
     ck_assert_msg(strcmp(expectedSum, sumResult) == 0,
 		  ANSI_COLOR_RED
 		  "%s + %s expected %s but was %s\n"
@@ -54,7 +52,7 @@ void check_addition_result(char *leftAddend, char *rightAddend,
 	   rightAddend, sumResult);
 }
 
-void check_NULL_roman_input(int arabicValue)
+void check_NULL_roman_input(const int arabicValue)
 {
     int expectedFailure = -1;
 
@@ -66,7 +64,7 @@ void check_NULL_roman_input(int arabicValue)
 	   ANSI_COLOR_RESET, arabicValue);
 }
 
-void check_empty_roman_input(int arabicValue)
+void check_empty_roman_input(const int arabicValue)
 {
     int expectedFailure = -1;
     ck_assert_msg(arabicValue == expectedFailure,
@@ -77,7 +75,7 @@ void check_empty_roman_input(int arabicValue)
 	   ANSI_COLOR_RESET, arabicValue);
 }
 
-void check_bad_value(int arabicValue, char *badValue)
+void check_bad_value(const int arabicValue, const char *badValue)
 {
     int expectedFailure = -1;
     ck_assert_msg(arabicValue == expectedFailure,
@@ -87,3 +85,4 @@ void check_bad_value(int arabicValue, char *badValue)
     printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n"
 	   ANSI_COLOR_RESET, badValue, arabicValue);
 }
+
