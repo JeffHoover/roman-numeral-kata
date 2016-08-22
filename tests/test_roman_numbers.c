@@ -36,13 +36,13 @@ START_TEST(subtraction)
     char differenceResult[20];
     subtract(minuend, subtrahend, (char *)differenceResult);
 
-    check_subtraction_result(minuend, subtrahend, expectedDifference,
-			     differenceResult);
+    check_subtraction_result(minuend, subtrahend, expectedDifference, differenceResult);
 
     printf("\n");
 }
+END_TEST
 
-END_TEST START_TEST(addition)
+START_TEST(addition)
 {
     char *expectedSum = "II";
     char *leftAddend = "I";
@@ -54,8 +54,9 @@ END_TEST START_TEST(addition)
 
     check_addition_result(leftAddend, rightAddend, expectedSum, sumResult);
 }
+END_TEST
 
-END_TEST START_TEST(to_roman)
+START_TEST(to_roman)
 {
     // This might be a few bytes too big. I'm ok with that.
     // Longest roman numeral in test is "MMMMDCCCXCIV". Error message is 18 long.
@@ -65,15 +66,17 @@ END_TEST START_TEST(to_roman)
 
     check_arabic_to_roman(arabic_values[_i], roman_values[_i], romanResult);
 }
+END_TEST
 
-END_TEST START_TEST(to_arabic)
+START_TEST(to_arabic)
 {
     int arabicValue = roman_to_arabic(roman_values[_i]);
 
     check_roman_to_arabic(roman_values[_i], arabic_values[_i], arabicValue);
 }
+END_TEST
 
-END_TEST START_TEST(to_arabic_bad_data)
+START_TEST(to_arabic_bad_data)
 {
     // TODO - break these into tests. Rename check_result and check_result_i
     int arabicValue = roman_to_arabic(NULL);
@@ -90,8 +93,9 @@ END_TEST START_TEST(to_arabic_bad_data)
     arabicValue = roman_to_arabic(badValue);
     check_bad_value(arabicValue, badValue);
 }
+END_TEST
 
-END_TEST Suite *roman_suite(void)
+Suite *roman_suite(void)
 {
     Suite *s = suite_create("Roman Numeral Unit Tests");
 

@@ -11,17 +11,20 @@ void check_arabic_to_roman(unsigned int input, char *expected, char *actual)
 		  "convert_arabic_to_roman(%d) expected %s but was %s\n"
 		  ANSI_COLOR_RESET, input, expected, actual);
 
-    printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET, input, actual);
+    printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n"
+	   ANSI_COLOR_RESET, input, actual);
 }
 
-void check_roman_to_arabic(char *input, unsigned int expected, unsigned int actual)
+void check_roman_to_arabic(char *input, unsigned int expected,
+			   unsigned int actual)
 {
     ck_assert_msg(actual == expected,
 		  ANSI_COLOR_RED
 		  "convert_roman_to_arabic(%s) expected %d but was %d\n"
 		  ANSI_COLOR_RESET, input, expected, actual);
 
-    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, input, actual);
+    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n"
+	   ANSI_COLOR_RESET, input, actual);
 }
 
 void check_subtraction_result(char *minuend, char *subtrahend, char *expected,
