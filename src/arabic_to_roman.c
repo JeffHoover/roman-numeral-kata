@@ -1,9 +1,9 @@
 #include <arabic_to_roman.h>
 #include <string.h>
 
-void appendZeroToThreeTrailingIdigits(int arabicValue, char *romanResult);
+void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult);
 void compute_roman_digit(unsigned int *arabicValue,
-			 unsigned int incrementalValue, char *romanDigit,
+			 const unsigned int incrementalValue, char *romanDigit,
 			 char *romanValue);
 
 unsigned int incrementalValue[] =
@@ -29,7 +29,7 @@ void arabic_to_roman(unsigned int arabicValue, char *romanResult)
     appendZeroToThreeTrailingIdigits(arabicValue, romanResult);
 }
 
-void appendZeroToThreeTrailingIdigits(int arabicValue, char *romanResult)
+void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult)
 {
     for (int ii = 0; ii < arabicValue; ii++) {
 	strcat(romanResult, "I");
@@ -37,7 +37,7 @@ void appendZeroToThreeTrailingIdigits(int arabicValue, char *romanResult)
 }
 
 void compute_roman_digit(unsigned int *arabicValue,
-			 unsigned int incrementalValue, char *romanDigit,
+			 const unsigned int incrementalValue, char *romanDigit,
 			 char *romanValue)
 {
     if (*arabicValue >= incrementalValue) {
