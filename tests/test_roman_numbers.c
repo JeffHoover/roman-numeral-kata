@@ -28,6 +28,7 @@ char *roman_values[DATA_COUNT] =
     "MMI", "MMMXXX", "INPUT_OUT_OF_RANGE", "INPUT_OUT_OF_RANGE"
 };
 
+
 START_TEST(subtraction)
 {
     char *minuend = "IV";
@@ -43,6 +44,7 @@ START_TEST(subtraction)
 }
 END_TEST
 
+
 START_TEST(addition)
 {
     char *expectedSum = "II";
@@ -57,6 +59,7 @@ START_TEST(addition)
 }
 END_TEST
 
+
 START_TEST(to_roman)
 {
     // This might be a few bytes too big. I'm ok with that.
@@ -68,6 +71,7 @@ START_TEST(to_roman)
     check_arabic_to_roman(arabic_values[_i], roman_values[_i], romanResult);
 }
 END_TEST
+
 
 START_TEST(to_arabic)
 {
@@ -120,54 +124,54 @@ END_TEST
 
 Suite *roman_suite(void)
 {
-    Suite *s = suite_create("Roman Numeral Unit Tests");
+    Suite *suite = suite_create("Roman Numeral Unit Tests");
 
     TCase *tc_to_arabic = tcase_create("RomanToArabic");
     tcase_add_loop_test(tc_to_arabic, to_arabic, 0, DATA_COUNT - 2);	// Don't use 2 INPUT_OUT_OF_RANGE as to_arabic input
-    suite_add_tcase(s, tc_to_arabic);
+    suite_add_tcase(suite, tc_to_arabic);
 
     TCase *tc_to_roman = tcase_create("ArabicToRoman");
     tcase_add_loop_test(tc_to_roman, to_roman, 0, DATA_COUNT);
-    suite_add_tcase(s, tc_to_roman);
+    suite_add_tcase(suite, tc_to_roman);
 
     TCase *tc_to_arabic_bad_data = tcase_create("RomanToArabic_bad_data");
     tcase_add_test(tc_to_arabic_bad_data, to_arabic_bad_data);
-    suite_add_tcase(s, tc_to_arabic_bad_data);
+    suite_add_tcase(suite, tc_to_arabic_bad_data);
 
     TCase *tc_to_arabic_null = tcase_create("RomanToArabic_null_data");
     tcase_add_test(tc_to_arabic_null, to_arabic_null);
-    suite_add_tcase(s, tc_to_arabic_null);
+    suite_add_tcase(suite, tc_to_arabic_null);
 
     TCase *tc_to_arabic_empty = tcase_create("RomanToArabic_empty");
     tcase_add_test(tc_to_arabic_empty, to_arabic_empty);
-    suite_add_tcase(s, tc_to_arabic_empty);
+    suite_add_tcase(suite, tc_to_arabic_empty);
 
     TCase *tc_to_arabic_bad_chars = tcase_create("RomanToArabic_bad_chars");
     tcase_add_test(tc_to_arabic_bad_chars, to_arabic_bad_chars);
-    suite_add_tcase(s, tc_to_arabic_bad_chars);
+    suite_add_tcase(suite, tc_to_arabic_bad_chars);
 
     TCase *tc_addition = tcase_create("Addition");
     tcase_add_test(tc_addition, addition);
-    suite_add_tcase(s, tc_addition);
+    suite_add_tcase(suite, tc_addition);
 
     TCase *tc_subtraction = tcase_create("Subtraction");
     tcase_add_test(tc_subtraction, subtraction);
-    suite_add_tcase(s, tc_subtraction);
+    suite_add_tcase(suite, tc_subtraction);
 
-    return s;
+    return suite;
 }
 
-void srunner_set_fork_status(SRunner * sr, enum fork_status fstat);
+void srunner_set_fork_status(SRunner * runner, enum fork_status fstat);
 
 int main(void)
 {
     int number_tests_failed;
     Suite *s = roman_suite();
-    SRunner *sr = srunner_create(s);
-    srunner_set_fork_status(sr, CK_NOFORK);
-    srunner_run_all(sr, CK_NORMAL);
-    number_tests_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
+    SRunner *runner = srunner_create(s);
+    srunner_set_fork_status(runner, CK_NOFORK);
+    srunner_run_all(runner, CK_NORMAL);
+    number_tests_failed = srunner_ntests_failed(runner);
+    srunner_free(runner);
     return (number_tests_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
