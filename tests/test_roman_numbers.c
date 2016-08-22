@@ -1,4 +1,4 @@
-#include <roman_utils.h>
+#include <roman_arithmetic.h>
 #include <check.h>
 #include <stdio.h>
 #include <stdlib.h>
