@@ -4,16 +4,14 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #include <stdio.h>
 
-void check_result(unsigned int input, char *expected, char *actual,
-		  char *funcName)
+void check_arabic_to_roman(unsigned int input, char *expected, char *actual)
 {
     ck_assert_msg(strcmp(actual, expected) == 0,
 		  ANSI_COLOR_RED
-		  "%s(%d) expected %s but was %s\n"
-		  ANSI_COLOR_RESET, funcName, input, expected, actual);
+		  "convert_arabic_to_roman(%d) expected %s but was %s\n"
+		  ANSI_COLOR_RESET, input, expected, actual);
 
-    printf(ANSI_COLOR_GREEN "%s(%d) = %s\n" ANSI_COLOR_RESET, funcName, input,
-	   actual);
+    printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET, input, actual);
 }
 
 void check_result_i(char *input, unsigned int expected, unsigned int actual,

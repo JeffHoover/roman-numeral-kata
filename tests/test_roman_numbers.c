@@ -63,8 +63,7 @@ END_TEST START_TEST(to_roman)
 
     arabic_to_roman(arabic_values[_i], romanResult);
 
-    check_result(arabic_values[_i], roman_values[_i], romanResult,
-		 "convert_arabic_to_roman");
+    check_arabic_to_roman(arabic_values[_i], roman_values[_i], romanResult);
 }
 
 END_TEST START_TEST(to_arabic)
