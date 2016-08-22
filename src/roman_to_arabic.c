@@ -1,11 +1,11 @@
 #include <roman_to_arabic.h>
 #include <string.h>
 
-int lookup_addend_for(char romanDigit);
-void find_arabic_addends(int *arabicAddends, char *romanNumeral);
-int compute_arabic_from_addends(int *arabicAddends, int numberOfRomanDigits);
+int lookup_addend_for(const char romanDigit);
+void find_arabic_addends(int *arabicAddends, const char *romanNumeral);
+int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRomanDigits);
 
-int roman_to_arabic(char *romanNumeral)
+int roman_to_arabic(const char *romanNumeral)
 {
     if (romanNumeral == NULL) {
 	return -1;
@@ -23,7 +23,7 @@ int roman_to_arabic(char *romanNumeral)
     return compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
 }
 
-int lookup_addend_for(char romanDigit)
+int lookup_addend_for(const char romanDigit)
 {
     switch (romanDigit) {
     case 'I':
@@ -45,7 +45,7 @@ int lookup_addend_for(char romanDigit)
     }
 }
 
-void find_arabic_addends(int *arabicAddends, char *romanNumeral)
+void find_arabic_addends(int *arabicAddends, const char *romanNumeral)
 {
     if (arabicAddends == NULL || romanNumeral == NULL) {
 	return;
@@ -56,7 +56,7 @@ void find_arabic_addends(int *arabicAddends, char *romanNumeral)
     }
 }
 
-int compute_arabic_from_addends(int *arabicAddends, int numberOfRomanDigits)
+int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRomanDigits)
 {
     if (arabicAddends == NULL || numberOfRomanDigits < 1) {
 	return -1;
