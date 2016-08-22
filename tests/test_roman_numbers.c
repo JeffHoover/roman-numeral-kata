@@ -70,8 +70,7 @@ END_TEST START_TEST(to_arabic)
 {
     int arabicValue = roman_to_arabic(roman_values[_i]);
 
-    check_result_i(roman_values[_i], arabic_values[_i], arabicValue,
-		   "convert_roman_to_arabic");
+    check_roman_to_arabic(roman_values[_i], arabic_values[_i], arabicValue);
 }
 
 END_TEST START_TEST(to_arabic_bad_data)

@@ -14,16 +14,14 @@ void check_arabic_to_roman(unsigned int input, char *expected, char *actual)
     printf(ANSI_COLOR_GREEN "convert_arabic_to_roman(%d) = %s\n" ANSI_COLOR_RESET, input, actual);
 }
 
-void check_result_i(char *input, unsigned int expected, unsigned int actual,
-		    char *funcName)
+void check_roman_to_arabic(char *input, unsigned int expected, unsigned int actual)
 {
     ck_assert_msg(actual == expected,
 		  ANSI_COLOR_RED
-		  "%s(%s) expected %d but was %d\n"
-		  ANSI_COLOR_RESET, funcName, input, expected, actual);
+		  "convert_roman_to_arabic(%s) expected %d but was %d\n"
+		  ANSI_COLOR_RESET, input, expected, actual);
 
-    printf(ANSI_COLOR_GREEN "%s(%s) = %d\n" ANSI_COLOR_RESET, funcName, input,
-	   actual);
+    printf(ANSI_COLOR_GREEN "convert_roman_to_arabic(%s) = %d\n" ANSI_COLOR_RESET, input, actual);
 }
 
 void check_subtraction_result(char *minuend, char *subtrahend, char *expected,
