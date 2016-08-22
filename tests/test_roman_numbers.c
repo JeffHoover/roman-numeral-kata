@@ -76,24 +76,46 @@ START_TEST(to_arabic)
 }
 END_TEST
 
+
+START_TEST(to_arabic_null)
+{
+    int arabicValue = roman_to_arabic(NULL);
+
+    check_NULL_roman_input(arabicValue);
+}
+END_TEST
+
+
+START_TEST(to_arabic_empty)
+{
+    int arabicValue = roman_to_arabic("");
+
+    check_empty_roman_input(arabicValue);
+}
+END_TEST
+
+
 START_TEST(to_arabic_bad_data)
 {
-    // TODO - break these into tests. Rename check_result and check_result_i
-    int arabicValue = roman_to_arabic(NULL);
-    check_NULL_roman_input(arabicValue);
+    char * badValue = "bad_value";
 
-    arabicValue = roman_to_arabic("");
-    check_empty_roman_input(arabicValue);
+    int arabicValue = roman_to_arabic(badValue);
 
-    char *badValue = "bad_value";
-    arabicValue = roman_to_arabic(badValue);
-    check_bad_value(arabicValue, badValue);
-
-    badValue = "XVRRR";
-    arabicValue = roman_to_arabic(badValue);
     check_bad_value(arabicValue, badValue);
 }
 END_TEST
+
+
+START_TEST(to_arabic_bad_chars)
+{
+    char * badValue = "XVRRR";
+
+    int arabicValue = roman_to_arabic(badValue);
+
+    check_bad_value(arabicValue, badValue);
+}
+END_TEST
+
 
 Suite *roman_suite(void)
 {
@@ -110,6 +132,18 @@ Suite *roman_suite(void)
     TCase *tc_to_arabic_bad_data = tcase_create("RomanToArabic_bad_data");
     tcase_add_test(tc_to_arabic_bad_data, to_arabic_bad_data);
     suite_add_tcase(s, tc_to_arabic_bad_data);
+
+    TCase *tc_to_arabic_null = tcase_create("RomanToArabic_null_data");
+    tcase_add_test(tc_to_arabic_null, to_arabic_null);
+    suite_add_tcase(s, tc_to_arabic_null);
+
+    TCase *tc_to_arabic_empty = tcase_create("RomanToArabic_empty");
+    tcase_add_test(tc_to_arabic_empty, to_arabic_empty);
+    suite_add_tcase(s, tc_to_arabic_empty);
+
+    TCase *tc_to_arabic_bad_chars = tcase_create("RomanToArabic_bad_chars");
+    tcase_add_test(tc_to_arabic_bad_chars, to_arabic_bad_chars);
+    suite_add_tcase(s, tc_to_arabic_bad_chars);
 
     TCase *tc_addition = tcase_create("Addition");
     tcase_add_test(tc_addition, addition);
@@ -135,3 +169,4 @@ int main(void)
     srunner_free(sr);
     return (number_tests_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+
