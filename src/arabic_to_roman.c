@@ -1,8 +1,8 @@
 #include <string.h>
 #include "arabic_to_roman.h"
 
-void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult);
-void compute_roman_digit(unsigned int *arabicValue,
+static void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult);
+static void compute_roman_digit(unsigned int *arabicValue,
 			 const unsigned int incrementalValue, char *romanDigit,
 			 char *romanValue);
 
@@ -29,14 +29,14 @@ void arabic_to_roman(unsigned int arabicValue, char *romanResult)
     appendZeroToThreeTrailingIdigits(arabicValue, romanResult);
 }
 
-void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult)
+static void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult)
 {
     for (int ii = 0; ii < arabicValue; ii++) {
 	strcat(romanResult, "I");
     }
 }
 
-void compute_roman_digit(unsigned int *arabicValue,
+static void compute_roman_digit(unsigned int *arabicValue,
 			 const unsigned int incrementalValue, char *romanDigit,
 			 char *romanValue)
 {
