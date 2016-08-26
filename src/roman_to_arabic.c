@@ -1,7 +1,7 @@
-#include <roman_to_arabic.h>
 #include <string.h>
+#include "roman_to_arabic.h"
 
-int lookup_addend_for(const char romanDigit);
+static int lookup_addend_for(const char romanDigit);
 void find_arabic_addends(int *arabicAddends, const char *romanNumeral);
 int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRomanDigits);
 
@@ -23,7 +23,7 @@ int roman_to_arabic(const char *romanNumeral)
     return compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
 }
 
-int lookup_addend_for(const char romanDigit)
+static int lookup_addend_for(const char romanDigit)
 {
     switch (romanDigit) {
     case 'I':

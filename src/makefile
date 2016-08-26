@@ -29,11 +29,11 @@ valgrind_test:
 	@mkdir -p ../tests/obj
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-msg_asserts.o: msg_asserts.c $(DEPS)
-	@mkdir -p obj
+../tests/obj/msg_asserts.o: ../tests/msg_asserts.c $(DEPS)
+	@mkdir -p ../tests/obj
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-test: ../tests/obj/test_roman_numbers.o arabic_to_roman.o roman_to_arabic.o roman_arithmetic.o msg_asserts.o
+test: ../tests/obj/test_roman_numbers.o ../tests/obj/msg_asserts.o arabic_to_roman.o roman_to_arabic.o roman_arithmetic.o
 	$(CC) -pthread -o $@ -o $@ $^ $(CFLAGS) -l check -lm -lrt 
 
 .PHONY: clean

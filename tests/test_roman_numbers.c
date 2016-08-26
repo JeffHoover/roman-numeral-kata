@@ -1,10 +1,11 @@
-#include <roman_arithmetic.h>
-#include <check.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <msg_asserts.h>
-#include <arabic_to_roman.h>
-#include <roman_to_arabic.h>
+#include <check.h>
+#include "msg_asserts.h"
+#include "roman_arithmetic.h"
+#include "arabic_to_roman.h"
+#include "roman_to_arabic.h"
+
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
@@ -63,7 +64,6 @@ END_TEST
 START_TEST(to_roman)
 {
     // This might be a few bytes too big. I'm ok with that.
-    // Longest roman numeral in test is "MMMMDCCCXCIV". Error message is 18 long.
     char romanResult[20];
 
     arabic_to_roman(arabic_values[_i], romanResult);
