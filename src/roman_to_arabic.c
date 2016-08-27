@@ -1,9 +1,25 @@
 #include <string.h>
+#include <stdbool.h>
 #include "roman_to_arabic.h"
 
 static int lookup_addend_for(const char romanDigit);
 static void find_arabic_addends(int *arabicAddends, const char *romanNumeral);
 static int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRomanDigits);
+static bool numeral_contains_illegal_repeat(const char * romanNumeral);
+
+static bool numeral_contains_illegal_repeat(const char * romanNumeral) {
+      if (strstr(romanNumeral, "VV") != NULL) {
+          return true;
+      }
+      if (strstr(romanNumeral, "LL") != NULL) {
+          return true;
+      }
+      if (strstr(romanNumeral, "DD") != NULL) {
+          return true;
+      }
+
+      return false;
+}
 
 int roman_to_arabic(const char *romanNumeral)
 {
@@ -14,6 +30,10 @@ int roman_to_arabic(const char *romanNumeral)
     for (unsigned int ii = 0; ii < strlen(romanNumeral); ii++) {
 	if (strchr("IVXCLDM", romanNumeral[ii]) == NULL)
 	    return -1;
+    }
+
+    if (numeral_contains_illegal_repeat(romanNumeral)) {
+       return -1;
     }
 
     int arabicAddends[20];	// Might be a few bytes too big. I'm ok with that.

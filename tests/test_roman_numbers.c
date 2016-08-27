@@ -72,6 +72,26 @@ START_TEST(to_roman)
 }
 END_TEST
 
+START_TEST(to_arabic_repeat)
+{
+    int result = 0;
+
+    result = roman_to_arabic("VV");
+
+    check_roman_to_arabic("VV", -1, result);
+
+
+    result = roman_to_arabic("LL");
+
+    check_roman_to_arabic("LL", -1, result);
+
+
+    result = roman_to_arabic("DD");
+
+    check_roman_to_arabic("DD", -1, result);
+}
+END_TEST
+
 
 START_TEST(to_arabic)
 {
@@ -128,6 +148,10 @@ Suite *roman_suite(void)
 
     TCase *tc_to_arabic = tcase_create("RomanToArabic");
     tcase_add_loop_test(tc_to_arabic, to_arabic, 0, DATA_COUNT - 2);	// Don't use 2 INPUT_OUT_OF_RANGE as to_arabic input
+    suite_add_tcase(suite, tc_to_arabic);
+
+    tc_to_arabic = tcase_create("RomanToArabicRepeat");
+    tcase_add_test(tc_to_arabic, to_arabic_repeat);
     suite_add_tcase(suite, tc_to_arabic);
 
     TCase *tc_to_roman = tcase_create("ArabicToRoman");
