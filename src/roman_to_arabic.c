@@ -6,6 +6,38 @@ static int lookup_addend_for(const char romanDigit);
 static void find_arabic_addends(int *arabicAddends, const char *romanNumeral);
 static int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRomanDigits);
 static bool numeral_contains_illegal_repeat(const char * romanNumeral);
+static bool numeral_contains_too_many_subtractives(const char * romanNumeral);
+
+int roman_to_arabic(const char *romanNumeral)
+{
+    if (romanNumeral == NULL) {
+	return -1;
+    }
+
+    for (unsigned int ii = 0; ii < strlen(romanNumeral); ii++) {
+	if (strchr("IVXCLDM", romanNumeral[ii]) == NULL)
+	    return -1;
+    }
+
+    if (numeral_contains_illegal_repeat(romanNumeral)) {
+       return -1;
+    }
+
+    if (numeral_contains_too_many_subtractives(romanNumeral)) {
+       return -1;
+    }
+
+    int arabicAddends[20];	// Might be a few bytes too big. I'm ok with that.
+
+    find_arabic_addends(arabicAddends, romanNumeral);
+
+    int answer =  compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
+    if (answer == 0 || answer > 3999) {
+       return -1;
+    }
+
+    return answer;
+}
 
 static bool numeral_contains_illegal_repeat(const char * romanNumeral) {
       if (strstr(romanNumeral, "VV") != NULL) {
@@ -31,31 +63,27 @@ static bool numeral_contains_illegal_repeat(const char * romanNumeral) {
       return false;
 }
 
-int roman_to_arabic(const char *romanNumeral)
-{
-    if (romanNumeral == NULL) {
-	return -1;
+static bool left_digit_is_smaller(const char left, const char right);
+
+static bool numeral_contains_too_many_subtractives(const char * romanNumeral) {
+    unsigned int numeralLen = strlen(romanNumeral);
+    if (numeralLen < 3) { // Shouldn't need this guard  ???
+       return false;
     }
 
-    for (unsigned int ii = 0; ii < strlen(romanNumeral); ii++) {
-	if (strchr("IVXCLDM", romanNumeral[ii]) == NULL)
-	    return -1;
+    for (unsigned int ii=0; ii < numeralLen -2; ii++) {
+      if (left_digit_is_smaller(romanNumeral[ii], romanNumeral[ii+2]) &&
+          left_digit_is_smaller(romanNumeral[ii+1], romanNumeral[ii+2]) ) {
+         return true;
+      }
     }
+    return false;
+}
 
-    if (numeral_contains_illegal_repeat(romanNumeral)) {
-       return -1;
-    }
-
-    int arabicAddends[20];	// Might be a few bytes too big. I'm ok with that.
-
-    find_arabic_addends(arabicAddends, romanNumeral);
-
-    int answer =  compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
-    if (answer == 0 || answer > 3999) {
-       return -1;
-    }
-
-    return answer;
+static bool left_digit_is_smaller(const char left, const char right) {
+  int arabic_left  = lookup_addend_for(left);
+  int arabic_right = lookup_addend_for(right);
+  return arabic_left < arabic_right;
 }
 
 static int lookup_addend_for(const char romanDigit)

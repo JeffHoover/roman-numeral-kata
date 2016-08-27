@@ -72,6 +72,16 @@ START_TEST(to_roman)
 }
 END_TEST
 
+START_TEST(to_arabic_misc)
+{
+    int result = 0;
+
+    result = roman_to_arabic("IIX");
+    check_roman_to_arabic("IIX", -1, result);
+
+}
+END_TEST
+
 START_TEST(to_arabic_repeat)
 {
     int result = 0;
@@ -154,6 +164,10 @@ Suite *roman_suite(void)
 {
     Suite *suite = suite_create("Roman Numeral Unit Tests");
 
+    TCase *tc_to_roman = tcase_create("ArabicToRoman");
+    tcase_add_loop_test(tc_to_roman, to_roman, 0, DATA_COUNT);
+    suite_add_tcase(suite, tc_to_roman);
+
     TCase *tc_to_arabic = tcase_create("RomanToArabic");
     tcase_add_loop_test(tc_to_arabic, to_arabic, 0, DATA_COUNT - 2);	// Don't use 2 INPUT_OUT_OF_RANGE as to_arabic input
     suite_add_tcase(suite, tc_to_arabic);
@@ -162,9 +176,9 @@ Suite *roman_suite(void)
     tcase_add_test(tc_to_arabic, to_arabic_repeat);
     suite_add_tcase(suite, tc_to_arabic);
 
-    TCase *tc_to_roman = tcase_create("ArabicToRoman");
-    tcase_add_loop_test(tc_to_roman, to_roman, 0, DATA_COUNT);
-    suite_add_tcase(suite, tc_to_roman);
+    tc_to_arabic = tcase_create("RomanToArabicMisc");
+    tcase_add_test(tc_to_arabic, to_arabic_misc);
+    suite_add_tcase(suite, tc_to_arabic);
 
     TCase *tc_to_arabic_bad_data = tcase_create("RomanToArabic_bad_data");
     tcase_add_test(tc_to_arabic_bad_data, to_arabic_bad_data);
