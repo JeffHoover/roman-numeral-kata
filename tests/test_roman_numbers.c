@@ -77,18 +77,26 @@ START_TEST(to_arabic_repeat)
     int result = 0;
 
     result = roman_to_arabic("VV");
-
     check_roman_to_arabic("VV", -1, result);
 
-
     result = roman_to_arabic("LL");
-
     check_roman_to_arabic("LL", -1, result);
 
-
     result = roman_to_arabic("DD");
-
     check_roman_to_arabic("DD", -1, result);
+
+
+    result = roman_to_arabic("IIII");
+    check_roman_to_arabic("IIII", -1, result);
+
+    result = roman_to_arabic("XXXX");
+    check_roman_to_arabic("XXXX", -1, result);
+
+    result = roman_to_arabic("CCCC");
+    check_roman_to_arabic("CCCC", -1, result);
+
+    result = roman_to_arabic("MMMM");
+    check_roman_to_arabic("MMMM", -1, result);
 }
 END_TEST
 

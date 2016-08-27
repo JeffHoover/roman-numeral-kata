@@ -18,6 +18,16 @@ static bool numeral_contains_illegal_repeat(const char * romanNumeral) {
           return true;
       }
 
+      if (strstr(romanNumeral, "IIII") != NULL) {
+          return true;
+      }
+      if (strstr(romanNumeral, "XXXX") != NULL) {
+          return true;
+      }
+      if (strstr(romanNumeral, "CCCC") != NULL) {
+          return true;
+      }
+
       return false;
 }
 
@@ -40,7 +50,12 @@ int roman_to_arabic(const char *romanNumeral)
 
     find_arabic_addends(arabicAddends, romanNumeral);
 
-    return compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
+    int answer =  compute_arabic_from_addends(arabicAddends, strlen(romanNumeral));
+    if (answer == 0 || answer > 3999) {
+       return -1;
+    }
+
+    return answer;
 }
 
 static int lookup_addend_for(const char romanDigit)
