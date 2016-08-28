@@ -207,10 +207,6 @@ static void find_arabic_addends(int *arabicAddends, const char *romanNumeral)
 static int compute_arabic_from_addends(const int *arabicAddends,
 				       const int numberOfRomanDigits)
 {
-    if (arabicAddends == NULL || numberOfRomanDigits < 1) {
-	return -1;
-    }
-
     int arabicValue = arabicAddends[numberOfRomanDigits - 1];
     for (int ii = 0; ii < numberOfRomanDigits - 1; ii++) {
 	if (arabicAddends[ii] < arabicAddends[ii + 1]) {

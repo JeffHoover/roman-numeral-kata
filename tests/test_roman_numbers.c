@@ -114,6 +114,9 @@ START_TEST(to_arabic_misc)
     result = roman_to_arabic("IC");
     check_roman_to_arabic("IC", -1, result);
 
+    result = roman_to_arabic("IL");
+    check_roman_to_arabic("IL", -1, result);
+
     result = roman_to_arabic("LC");
     check_roman_to_arabic("LC", -1, result);
 
