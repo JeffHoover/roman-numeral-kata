@@ -41,6 +41,13 @@ START_TEST(subtraction)
 
     check_subtraction_result(minuend, subtrahend, expectedDifference, differenceResult);
 
+
+    minuend = "I";
+    subtrahend = "C";
+    subtract(minuend, subtrahend, (char *)differenceResult);
+
+    check_subtraction_result(minuend, subtrahend, "INPUT_OUT_OF_RANGE", differenceResult);
+
     printf("\n");
 }
 END_TEST
@@ -57,6 +64,13 @@ START_TEST(addition)
     add(leftAddend, rightAddend, (char *)sumResult);
 
     check_addition_result(leftAddend, rightAddend, expectedSum, sumResult);
+
+
+    leftAddend = "MMM";
+    rightAddend = "MMM";
+    add(leftAddend, rightAddend, (char *)sumResult);
+
+    check_addition_result(leftAddend, rightAddend, "INPUT_OUT_OF_RANGE", sumResult);
 }
 END_TEST
 
@@ -81,6 +95,9 @@ START_TEST(to_arabic_misc)
 
     result = roman_to_arabic("VVXI");
     check_roman_to_arabic("VVXI", -1, result);
+
+//    result = roman_to_arabic("IM");
+//    check_roman_to_arabic("IM", -1, result);
 
 }
 END_TEST
