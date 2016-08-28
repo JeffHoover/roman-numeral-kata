@@ -69,6 +69,17 @@ START_TEST(addition)
     add(leftAddend, rightAddend, (char *)sumResult);
 
     check_addition_result(leftAddend, rightAddend, "INPUT_OUT_OF_RANGE", sumResult);
+
+// TODO - REMOVE THE FOLLOWING:
+
+    char romanResult[20];
+    for (int ii=1; ii<=3998; ii++) {
+       arabic_to_roman(ii, romanResult);
+       printf("\"%s\",\n", romanResult);
+    }
+
+    arabic_to_roman(3999, romanResult);
+    printf("\"%s\"\n", romanResult);
 }
 END_TEST
 
@@ -94,9 +105,37 @@ START_TEST(to_arabic_misc)
     result = roman_to_arabic("VVXI");
     check_roman_to_arabic("VVXI", -1, result);
 
-// TODO - Next failing test:
-//    result = roman_to_arabic("IM");
-//    check_roman_to_arabic("IM", -1, result);
+    result = roman_to_arabic("ID");
+    check_roman_to_arabic("ID", -1, result);
+
+    result = roman_to_arabic("IM");
+    check_roman_to_arabic("IM", -1, result);
+
+    result = roman_to_arabic("VL");
+    check_roman_to_arabic("VL", -1, result);
+
+    result = roman_to_arabic("VC");
+    check_roman_to_arabic("VC", -1, result);
+
+    result = roman_to_arabic("VD");
+    check_roman_to_arabic("VD", -1, result);
+
+    result = roman_to_arabic("VM");
+    check_roman_to_arabic("VM", -1, result);
+
+
+    result = roman_to_arabic("XD");
+    check_roman_to_arabic("XD", -1, result);
+
+    result = roman_to_arabic("XM");
+    check_roman_to_arabic("XM", -1, result);
+
+
+    result = roman_to_arabic("LD");
+    check_roman_to_arabic("LD", -1, result);
+
+    result = roman_to_arabic("LM");
+    check_roman_to_arabic("LM", -1, result);
 
 }
 END_TEST

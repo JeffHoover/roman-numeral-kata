@@ -9,6 +9,7 @@ static int compute_arabic_from_addends(const int *arabicAddends,
 static bool numeral_contains_illegal_repeat(const char *romanNumeral);
 static bool numeral_contains_too_many_subtractives(const char *romanNumeral);
 static bool subtractive_results_in_itself(const char *romanNumeral);
+static bool subtractive_too_far_apart(const char *romanNumeral);
 
 int roman_to_arabic(const char *romanNumeral)
 {
@@ -21,15 +22,19 @@ int roman_to_arabic(const char *romanNumeral)
 	    return -1;
     }
 
+    if (subtractive_results_in_itself(romanNumeral)) {
+	return -1;
+    }
+
+    if (subtractive_too_far_apart(romanNumeral)) {
+	return -1;
+    }
+
     if (numeral_contains_illegal_repeat(romanNumeral)) {
 	return -1;
     }
 
     if (numeral_contains_too_many_subtractives(romanNumeral)) {
-	return -1;
-    }
-
-    if (subtractive_results_in_itself(romanNumeral)) {
 	return -1;
     }
 
@@ -44,6 +49,62 @@ int roman_to_arabic(const char *romanNumeral)
     }
 
     return answer;
+}
+
+static bool subtractive_too_far_apart(const char *romanNumeral) {
+
+    if (strstr(romanNumeral, "IL") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "IC") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "ID") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "IM") != NULL) {
+	return true;
+    }
+
+
+    if (strstr(romanNumeral, "VL") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "VC") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "VD") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "VM") != NULL) {
+	return true;
+    }
+
+
+    if (strstr(romanNumeral, "XD") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "XM") != NULL) {
+	return true;
+    }
+
+
+    if (strstr(romanNumeral, "LD") != NULL) {
+	return true;
+    }
+
+    if (strstr(romanNumeral, "LM") != NULL) {
+	return true;
+    }
+
+    return false;
 }
 
 static bool numeral_contains_illegal_repeat(const char *romanNumeral)
@@ -91,7 +152,6 @@ static bool numeral_contains_too_many_subtractives(const char *romanNumeral)
 
 static bool subtractive_results_in_itself(const char *romanNumeral)
 {
-
     for (unsigned int ii = 0; ii < strlen(romanNumeral) - 1; ii++) {
 	int left = romanNumeral[ii];
 	int right = romanNumeral[ii + 1];
