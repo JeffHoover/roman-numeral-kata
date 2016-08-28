@@ -15,7 +15,6 @@ char *romanDigit[] =
 void arabic_to_roman(unsigned int arabicValue, char *romanResult)
 {
     if (arabicValue < 1 || arabicValue > 3999) {
-	// TODO - Check if romanResult is too short? 
 	strcpy(romanResult, "INPUT_OUT_OF_RANGE");
 	return;
     }

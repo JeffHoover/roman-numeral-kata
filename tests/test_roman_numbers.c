@@ -188,7 +188,7 @@ Suite *roman_suite(void)
     suite_add_tcase(suite, tc_to_roman);
 
     TCase *tc_to_arabic = tcase_create("RomanToArabic");
-    tcase_add_loop_test(tc_to_arabic, to_arabic, 0, DATA_COUNT - 2);	// Don't use 2 INPUT_OUT_OF_RANGE as to_arabic input
+    tcase_add_loop_test(tc_to_arabic, to_arabic, 0, DATA_COUNT - 2); // Don't use 2 INPUT_OUT_OF_RANGE as to_arabic input
     suite_add_tcase(suite, tc_to_arabic);
 
     tc_to_arabic = tcase_create("RomanToArabicRepeat");
