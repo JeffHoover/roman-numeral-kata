@@ -10,9 +10,9 @@ void add(const char *leftAddend, const char *rightAddend, char *sum)
 		    sum);
 }
 
-void subtract(const char *minuend, const char *subtrahend, char *differenceResult)
+void subtract(const char *minuend, const char *subtrahend,
+	      char *differenceResult)
 {
     arabic_to_roman(roman_to_arabic(minuend) - roman_to_arabic(subtrahend),
 		    differenceResult);
 }
-

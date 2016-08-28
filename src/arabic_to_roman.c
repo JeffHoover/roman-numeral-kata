@@ -1,10 +1,11 @@
 #include <string.h>
 #include "arabic_to_roman.h"
 
-static void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult);
+static void appendZeroToThreeTrailingIdigits(const int arabicValue,
+					     char *romanResult);
 static void compute_roman_digit(unsigned int *arabicValue,
-			 const unsigned int incrementalValue, char *romanDigit,
-			 char *romanValue);
+				const unsigned int incrementalValue,
+				char *romanDigit, char *romanValue);
 
 unsigned int incrementalValue[] =
     { 1000, 900, 400, 100, 90, 50, 40, 10, 9, 5, 4 };
@@ -29,7 +30,8 @@ void arabic_to_roman(unsigned int arabicValue, char *romanResult)
     appendZeroToThreeTrailingIdigits(arabicValue, romanResult);
 }
 
-static void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanResult)
+static void appendZeroToThreeTrailingIdigits(const int arabicValue,
+					     char *romanResult)
 {
     for (int ii = 0; ii < arabicValue; ii++) {
 	strcat(romanResult, "I");
@@ -37,8 +39,8 @@ static void appendZeroToThreeTrailingIdigits(const int arabicValue, char *romanR
 }
 
 static void compute_roman_digit(unsigned int *arabicValue,
-			 const unsigned int incrementalValue, char *romanDigit,
-			 char *romanValue)
+				const unsigned int incrementalValue,
+				char *romanDigit, char *romanValue)
 {
     if (*arabicValue >= incrementalValue) {
 	strcat(romanValue, romanDigit);
@@ -47,4 +49,3 @@ static void compute_roman_digit(unsigned int *arabicValue,
 			    romanValue);
     }
 }
-
