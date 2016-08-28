@@ -55,7 +55,6 @@ END_TEST
 
 START_TEST(addition)
 {
-    char *expectedSum = "II";
     char *leftAddend = "I";
     char *rightAddend = "I";
     char sumResult[20];		// This might be a few bytes too big. I'm ok with that.
@@ -63,7 +62,7 @@ START_TEST(addition)
     printf("\n");
     add(leftAddend, rightAddend, (char *)sumResult);
 
-    check_addition_result(leftAddend, rightAddend, expectedSum, sumResult);
+    check_addition_result(leftAddend, rightAddend, "II", sumResult);
 
 
     leftAddend = "MMM";
@@ -96,6 +95,7 @@ START_TEST(to_arabic_misc)
     result = roman_to_arabic("VVXI");
     check_roman_to_arabic("VVXI", -1, result);
 
+// TODO - Next failing test:
 //    result = roman_to_arabic("IM");
 //    check_roman_to_arabic("IM", -1, result);
 
