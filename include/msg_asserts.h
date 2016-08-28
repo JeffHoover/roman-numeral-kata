@@ -7,4 +7,9 @@ void check_addition_result(const char * leftAddend, const char * rightAddend, co
 void check_NULL_roman_input(const int arabicValue);
 void check_empty_roman_input(const int arabicValue);
 void check_bad_value(const int arabicValue, const char * badValue);
+
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 #endif /* MSG_ASSERTS_H */

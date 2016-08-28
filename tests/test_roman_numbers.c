@@ -69,20 +69,23 @@ START_TEST(addition)
     add(leftAddend, rightAddend, (char *)sumResult);
 
     check_addition_result(leftAddend, rightAddend, "INPUT_OUT_OF_RANGE", sumResult);
-
-// TODO - REMOVE THE FOLLOWING:
-
-    char romanResult[20];
-    for (int ii=1; ii<=3998; ii++) {
-       arabic_to_roman(ii, romanResult);
-       printf("\"%s\",\n", romanResult);
-    }
-
-    arabic_to_roman(3999, romanResult);
-    printf("\"%s\"\n", romanResult);
 }
 END_TEST
 
+
+START_TEST(round_trip)
+{
+    // Should not be a for loop test, but I'm doing this instead of
+    // initializing a pair of 3999 value string arrays for test data.
+    char romanResult[20];
+    for (int ii=1; ii<=3999; ii++) {
+       arabic_to_roman(ii, romanResult);
+       int arabicValue = roman_to_arabic(romanResult);
+       ck_assert_msg(arabicValue == ii, ANSI_COLOR_RED "\nfailed round trip of %d = %s"
+                                        ANSI_COLOR_RESET, ii, romanResult);
+    }
+}
+END_TEST
 
 START_TEST(to_roman)
 {
@@ -221,6 +224,10 @@ END_TEST
 Suite *roman_suite(void)
 {
     Suite *suite = suite_create("Roman Numeral Unit Tests");
+
+    TCase *tc_round_trip = tcase_create("RoundTrip");
+    tcase_add_test(tc_round_trip, round_trip);
+    suite_add_tcase(suite, tc_round_trip);
 
     TCase *tc_to_roman = tcase_create("ArabicToRoman");
     tcase_add_loop_test(tc_to_roman, to_roman, 0, DATA_COUNT);

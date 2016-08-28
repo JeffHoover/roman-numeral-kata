@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <check.h>
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
+#include "msg_asserts.h"
 
 void check_arabic_to_roman(const unsigned int input, const char *expected, const char *actual)
 {
