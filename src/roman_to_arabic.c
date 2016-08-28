@@ -153,8 +153,9 @@ static bool numeral_contains_too_many_subtractives(const char *romanNumeral)
 static bool subtractive_results_in_itself(const char *romanNumeral)
 {
     for (unsigned int ii = 0; ii < strlen(romanNumeral) - 1; ii++) {
-	int left = romanNumeral[ii];
-	int right = romanNumeral[ii + 1];
+	int left  = lookup_addend_for(romanNumeral[ii]  );
+	int right = lookup_addend_for(romanNumeral[ii+1]);
+
 	if (right - left == left) {
 	    return true;
 	}

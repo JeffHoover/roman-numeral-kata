@@ -111,6 +111,15 @@ START_TEST(to_arabic_misc)
     result = roman_to_arabic("ID");
     check_roman_to_arabic("ID", -1, result);
 
+    result = roman_to_arabic("IC");
+    check_roman_to_arabic("IC", -1, result);
+
+    result = roman_to_arabic("LC");
+    check_roman_to_arabic("LC", -1, result);
+
+    result = roman_to_arabic("DM");
+    check_roman_to_arabic("DM", -1, result);
+
     result = roman_to_arabic("IM");
     check_roman_to_arabic("IM", -1, result);
 
