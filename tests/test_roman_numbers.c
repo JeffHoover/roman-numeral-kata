@@ -34,12 +34,11 @@ START_TEST(subtraction)
 {
     char *minuend = "IV";
     char *subtrahend = "I";
-    char *expectedDifference = "III";
     char differenceResult[20];
 
     subtract(minuend, subtrahend, (char *)differenceResult);
 
-    check_subtraction_result(minuend, subtrahend, expectedDifference, differenceResult);
+    check_subtraction_result(minuend, subtrahend, "III", differenceResult);
 
 
     minuend = "I";
