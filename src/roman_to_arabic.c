@@ -7,6 +7,7 @@ static void find_arabic_addends(int *arabicAddends, const char *romanNumeral);
 static int compute_arabic_from_addends(const int *arabicAddends, const int numberOfRomanDigits);
 static bool numeral_contains_illegal_repeat(const char * romanNumeral);
 static bool numeral_contains_too_many_subtractives(const char * romanNumeral);
+static bool subtractive_results_in_itself(const char * romanNumeral);
 
 int roman_to_arabic(const char *romanNumeral)
 {
@@ -24,6 +25,10 @@ int roman_to_arabic(const char *romanNumeral)
     }
 
     if (numeral_contains_too_many_subtractives(romanNumeral)) {
+       return -1;
+    }
+
+    if (subtractive_results_in_itself(romanNumeral)) {
        return -1;
     }
 
@@ -76,6 +81,19 @@ static bool numeral_contains_too_many_subtractives(const char * romanNumeral) {
           left_digit_is_smaller(romanNumeral[ii+1], romanNumeral[ii+2]) ) {
          return true;
       }
+    }
+    return false;
+}
+
+static bool subtractive_results_in_itself(const char * romanNumeral) {
+    
+    for (unsigned int ii=0; ii < strlen(romanNumeral)-1; ii++) {
+       int left =  romanNumeral[ii];
+       int right = romanNumeral[ii+1];
+       if (right - left == left) {
+          return true;
+       }
+
     }
     return false;
 }

@@ -79,6 +79,9 @@ START_TEST(to_arabic_misc)
     result = roman_to_arabic("IIX");
     check_roman_to_arabic("IIX", -1, result);
 
+    result = roman_to_arabic("VVXI");
+    check_roman_to_arabic("VVXI", -1, result);
+
 }
 END_TEST
 
